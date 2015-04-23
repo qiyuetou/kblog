@@ -1,0 +1,50 @@
+doctype html
+html
+  head
+    meta(content="text/html" charset="UTF-8")
+    meta(name="description" content="朱文龙 , 英文名 Mofei , 百度高级研发工程师 ，2010年开始研究web前端技术，一个极具潜力的全栈工程师。")
+    meta(name="author" content="朱文龙")
+    meta(name="author" content="Z.Mofei")
+    meta(name="keywords" content="朱文龙,Z.Mofei,Mofei,前端,前端工程师,CSS3,JS,AJAX,HTML5,Node.js")
+    meta(name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width")
+    meta(content="yes" name="apple-mobile-web-app-capable")
+    if page&&page.title
+      title= page.title
+    else
+      title HI!I am Z.Mofei! 朱文龙的自留地
+
+    link(rel="alternate" type="application/rss+xml" title="HI!I am Z.Mofei -- 朱文龙的自留地" href="/rss")
+    link(rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-precomposed_64.png")
+    link(rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-precomposed_144.png")
+    link(rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-precomposed_72.png")
+    link(rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-precomposed_144.png")
+    link(rel="icon" href="favicon.ico") 
+
+    block css
+
+  body
+    nav.m_followlink
+      span Follow me:
+      a(href="http://weibo.com/zwl1027" target="_blank") 新浪微博
+      a(href="http://t.qq.com/zwl1989") 腾讯微博
+      a(href="https://plus.google.com/117364054641606661534?rel=author") Google+
+      a(href="/rss") RSS
+
+    section.main_section
+      block content
+
+    footer.m_nav
+      div.m_logo 
+        div.m_logo_address ZHUWENLONG.com 
+        div.m_logo_text 朱文龙的自留地
+      div.m_navlist
+        a(href="/" class=(/\/$/.test(sys.url)?"active":""))  首页
+        a(href="/blog" class=(/\/blog\/{0,1}/.test(sys.url)?"active":""))  博客
+        a(href="/about" class=(/\/about\/{0,1}/.test(sys.url)?"active":""))  关于
+        a(href="/lab" class=(/\/lab\/{0,1}/.test(sys.url)?"active":""))  实验
+    script(src="/js/jQuery-v1.11.0.js")
+    div.analytical
+      script(src="/js/plug/analytical.js")
+    script(src="/js/console/about.js")
+    block js
+    div.main_filter

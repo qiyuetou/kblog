@@ -22,6 +22,8 @@
     "jade": "^1.9.2",
     "koa": "^0.19.1",
     "koa-logger": "^1.2.2",
-    "koa-route": "^2.4.1"
+    "koa-route": "^2.4.1",
+    "koa-static": "^1.4.9",
+    "mongodb": "^2.0.27"
   }
 }

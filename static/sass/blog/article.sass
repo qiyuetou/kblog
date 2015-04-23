@@ -1,0 +1,264 @@
+@import 'normalize.sass'
+@import "../common.sass"
+
+$width: 1020px
+
+@font-face
+	font-family: 'icomoon'
+	src: url('/fonts/icomoon.eot?iqof2f')
+	src: url('/fonts/icomoon.eot?#iefixiqof2f') format('embedded-opentype'), url('/fonts/icomoon.woff?iqof2f') format('woff'), url('/fonts/icomoon.ttf?iqof2f') format('truetype'), url('/fonts/icomoon.svg?iqof2f#icomoon') format('svg')
+	font-weight: normal
+	font-style: normal
+
+.main_section
+	overflow: hidden
+	width: $width
+	margin: 0 auto
+	
+.blogContent
+	font-size: 14px
+	width: $width
+	margin: 0 auto
+	overflow: hidden
+	margin-top: 3em
+	margin-bottom: 6.5em
+	color: #fff
+	position: relative
+	z-index: 10
+	a
+		color: rgb(0, 255, 8)
+		font-weight: bolder
+		display: inline-block
+
+.blogArticle
+	float: left
+	width: 730px
+	background: rgba(00,000,00,0.5)
+	padding: 20px
+	line-height: 25px
+	header
+		overflow: hidden
+
+.blogArticle
+	blockquote
+		padding: 2px 0 2px 15px
+		margin: 0 0 20px
+		border-left: 5px solid rgba(255, 255, 255, 0.3)
+		background: rgba(255, 255, 255, 0.1)
+	hr
+		margin: 20px 0
+		border: 0
+		border: none
+		border-top: 1px dotted #535353
+		padding: 10px 0
+		height: 0
+		overflow: hidden
+		font-size: 0
+.blogVisited,
+.blogComment
+	font-family: 'icomoon'
+	margin-right: 10px
+.blogTitle
+	font-size: 26px
+	float: left
+	margin: 0
+	line-height: 26px
+	margin-right: 10px
+
+.blogPubTime
+	font-size: 18px
+	line-height: 33px
+	display: block
+	color: #ccc
+
+.blogShare
+	border-bottom: 1px dotted #666
+	padding: 5px 0
+	text-align: right
+
+.blogCont,
+	padding: 15px 0 0 0 
+
+.blogCopyright
+	overflow: hidden
+	border-top: 1px dotted #848484
+	color: #ccc
+
+.blogNav
+	overflow: hidden
+.blogNavNext
+	float: right
+	width: 350px
+	overflow: hidden
+	white-space: nowrap
+	text-overflow: ellipsis
+.blogNavPrev
+	float: left
+	width: 350px
+	overflow: hidden
+	white-space: nowrap
+	text-overflow: ellipsis
+.blogNavNext,
+.blogNavPrev
+	a
+		overflow: hidden 
+		white-space: nowrap
+		text-overflow: ellipsis
+		display: inline-block
+		max-width: 300px
+
+.blogInfo
+	float: left
+	width: 230px
+	background: rgba(00,00,00,0.5)
+	margin-left: 20px
+
+.userIcon
+	text-align: center
+
+.userIntr
+	padding: 10px
+	line-height: 1.62em
+
+.bCBlock
+	overflow: hidden
+	padding: 8px 0
+	border-bottom: 1px dotted #666
+.bCBlockBase
+	overflow: hidden
+.bCAvatar
+	width: 60px
+	height: 60px
+	border-radius: 40px
+	float: left
+.bCInfo
+	float: left
+	width: 600px
+	margin-left: 15px
+
+.bCPost
+	background: rgba(0,0,0,0.7)
+	padding: 10px
+	margin: 10px 0
+	input,textarea
+		background: none
+		border: none
+		border-bottom: 1px dotted #666
+		outline: none
+		width: 188px
+	label
+		display: inline-block
+		width: 72px
+		text-align: right
+		margin-right: 10px
+.bCPostTitle
+	font-size: 14px
+	background: rgba(255,255,255,0.2)
+	padding: 3px 8px
+.bCPostTop
+	overflow: hidden
+.bCPostLeft
+	float: left
+	width: 300px
+
+.bCPostRight
+	float: left
+	width: 400px
+	textarea
+		border: 1px solid #666
+		height: 80px
+		width: 380px
+		margin-top: 10px
+		padding: 10px
+.bCPostBottom
+	line-height: 30px
+	text-align: right
+	input
+		width: 60px
+	button
+		border: 1px dotted #666
+		display: inline-block 
+		color: #ccc 
+		background: rgba(00, 00, 00, 0.5)
+		padding: 3px 8px
+		margin-left: 10px
+.bCPostAuth
+	margin: 0 8px
+	vertical-align: middle
+	width: 80px
+	height: 24px
+
+.bCREP
+	display: none
+	font-family: 'icomoon'
+	margin-left: 10px
+	a
+		margin-left: 0
+		text-decoration: none
+.bCName
+	margin-right: 10px
+
+@media (max-width:560px)
+	.main_section,
+	.blogContent,
+	.blogArticle
+		width: 100%
+		float: none
+
+	.blogContent
+		display: box
+
+	.blogArticle,
+	.blogInfo
+		padding: 10px
+		flex: 1 100%
+		float: none
+		width: auto
+		margin: 0 
+		
+	.blogTitle
+		height: auto
+		margin: auto
+	.blogNavPrev,
+	.blogNavNext
+		float: none
+	.bCPostLeft,
+	.bCPostRight
+		width: auto
+		float: none
+		display: box
+		textarea
+			flex: 1 100%
+			width: 90%
+	.bCPostBottom
+		text-align: left
+		button
+			width: 100%
+			margin: 10px 0
+		img
+			margin-top: 10px
+
+	.bCPost 
+		label
+			text-align: left
+			width: auto
+		input
+			width: 100%
+			display: block
+	.blogNavPrev
+		width: auto
+	.blogCopyright
+		word-break: break-all
+	.blogNavNext a,
+	.blogNavPrev a
+		display: block
+	.bCBlockBase
+		display: box
+		img
+			width: 60px
+		.bCInfo
+			box-flex: 1
+			width: auto
+			margin-left: 10px
+	.bCREP
+		display: inline-block

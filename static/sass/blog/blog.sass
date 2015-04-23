@@ -1,0 +1,176 @@
+@import 'normalize.sass'
+@import "../common.sass"
+
+$width: 1020px
+
+
+@font-face
+	font-family: 'icomoon'
+	src: url('/fonts/icomoon.eot?iqof2f')
+	src: url('/fonts/icomoon.eot?#iefixiqof2f') format('embedded-opentype'), url('/fonts/icomoon.woff?iqof2f') format('woff'), url('/fonts/icomoon.ttf?iqof2f') format('truetype'), url('/fonts/icomoon.svg?iqof2f#icomoon') format('svg')
+	font-weight: normal
+	font-style: normal
+
+
+.main_section
+	overflow: hidden
+	width: $width
+	margin: 0 auto
+
+.blogContent
+	width: $width
+	margin: 0 auto
+	position: relative
+	overflow: hidden
+	margin-bottom: 5em
+	margin-top: 2.5em
+
+.blogNav
+	float: left
+	width: 230px
+	background: rgba(00,00,00,0.5)
+	ul
+		padding: 0
+		margin-top: 0
+		li
+			list-style: none
+			margin: 0
+			padding: 0
+			a
+				color: #fff
+				line-height: 1.5em
+				text-decoration: none
+				text-indent: 2.8em
+				display: inline-block
+				width: 100%
+				padding: 5px 0
+				&:hover,&.active
+					background: black
+	.blogNavTitle
+		font-family: 'icomoon'
+		color: #fff
+		line-height: 1.5em	
+		font-size: 18px
+		border-bottom: 1px dotted #666
+		text-indent: 5px
+		padding: 10px
+
+.blogList
+	float: left
+	width: 770px
+	margin-left: 20px
+	background: rgba(00,000,00,0.5)
+	.blogListItem
+		color: #fff
+		text-decoration: none
+		display: block
+		border-bottom: 1px dotted #666
+		padding: 10px 0
+		margin: 0 15px
+
+	header
+		font-size: 2em	
+		margin: 3px 0
+		overflow: hidden
+	time
+		position: relative
+		float: left
+		.blogyear
+			position: absolute
+			top: 0.3em
+			width: 45px
+			text-align: right
+			font-size: 0.45em
+			color: #ccc
+		.blogmonth
+			position: absolute 
+			top: 1.3em
+			width: 45px
+			text-align: right
+			font-size: 0.45em
+			color: #ccc
+		.blogday
+			width: 38px
+			display: inline-block
+			margin-left: 48px
+			color: #ccc
+	h2
+		float: left
+		color: #fff
+		font-size: 1em
+		margin: 0
+		padding: 0
+		margin-left: 20px
+		width: 625px
+		max-width: 625px
+
+	.blogListContent
+		margin-left: 8em
+		text-indent: 2em
+		font-size: 14px
+		color: #ccc
+		padding: 3px 0
+
+	footer
+		overflow: hidden
+		span
+			float: left
+			margin-left: 15px
+	.noarticle
+		text-align: center
+		padding: 20px 0
+		color: #fff
+	.blogVisited,
+	.blogComment
+		font-family: 'icomoon'
+
+@media (max-width:560px)
+	.blogNav,
+	.blogList,
+	.main_section,
+	.blogContent
+		float: none
+		margin: 0
+		width: 100%
+	.main_section
+		padding-top: 40px
+		padding-bottom: 80px
+	.blogList
+		time 
+			.blogmonth,
+			.blogyear,
+			.blogday
+				float: none
+				position: relative
+				margin: 0
+				top: 0
+				left: 0
+				width: auto
+				font-size: 18px
+				margin-right: 8px
+	.blogList 
+		h2
+			width: 100%
+			margin: 0
+			padding: 0
+			font-size: 25px
+		.blogListContent
+			margin: 0
+			padding: 0
+			line-height: 20px 
+			margin-top: 5px
+		footer span
+			margin: 10px 20px 10px 0
+
+.blogpages
+	padding: 5px
+	text-align: right
+	a
+		display: inline-block
+		padding: 3px 5px
+		margin: 0 3px
+		color: #eee
+		text-decoration: none
+	a.blogpagescurrent
+		background: rgba(0,0,0,0.3)
+		color: #999

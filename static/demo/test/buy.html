@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>购买</title>
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body class="show_body">
+        <div class="showarea">
+            <!--颜色1-->
+            <div class="showarea_in">
+                <div class="block">
+                    <img src="img/pic1.jpg"/>
+                </div>
+                <div class="block">
+                    <img src="img/pic2.jpg"/>
+                </div>
+                <div class="block">
+                    <img src="img/pic3.jpg"/>
+                </div>
+                <div class="block">
+                    <img src="img/pic1.jpg"/>
+                </div>
+                <div class="block">
+                    <img src="img/pic2.jpg"/>
+                </div>
+            </div>
+            <!--颜色2-->
+            <div class="showarea_in">
+                <div class="block">
+                    <img src="img/pic2.jpg"/>
+                </div>
+                <div class="block">
+                    <img src="img/pic2.jpg"/>
+                </div>
+                <div class="block">
+                    <img src="img/pic1.jpg"/>
+                </div>
+                <div class="block">
+                    <img src="img/pic2.jpg"/>
+                </div>
+            </div>
+            <!--颜色3-->
+            <div class="showarea_in">
+                <div class="block">
+                    <img src="img/pic3.jpg"/>
+                </div>
+            </div>
+            <!--颜色4-->
+            <div class="showarea_in">
+                <div class="block">
+                    <img src="img/pic1.jpg"/>
+                </div>
+                <div class="block">
+                    <img src="img/pic2.jpg"/>
+                </div>
+                <div class="block">
+                    <img src="img/pic3.jpg"/>
+                </div>
+                <div class="block">
+                    <img src="img/pic1.jpg"/>
+                </div>
+                <div class="block">
+                    <img src="img/pic2.jpg"/>
+                </div>
+            </div>
+        </div>
+        <div class="showtitle">
+            3纯棉DP免烫条纹雅戈尔商务男士长袖衬衫正装衬衣
+        </div>
+        <form>
+            <div class="showcolor">
+                <div class="showcolor_title">
+                    颜色
+                </div>
+                <div class="showcolors">
+                    <div class="showcolors_block"><img src="img/pic1.jpg" />
+                    </div>
+                    <div class="showcolors_block"><img src="img/pic1.jpg" />
+                    </div>
+                    <div class="showcolors_block"><img src="img/pic1.jpg" />
+                    </div>
+                    <div class="showcolors_block"><img src="img/pic1.jpg" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="showcolor">
+                <div class="showcolor_title">
+                    尺寸
+                </div>
+                <div class="showsize">
+                    <span>24</span>
+                    <span>25</span>
+                    <span>26</span>
+                    <span>27</span>
+                </div>
+            </div>
+
+            <div class="showcolor">
+                <div class="showcolor_title">
+                    数量
+                </div>
+                <div class="shownumber">
+                    <span class="numberplus">-</span>
+                    <input type="number" name="number" class="numberinput" value="0" max="9999999" min="0" />
+                    <span class="numbermin">+</span>
+                </div>
+            </div>
+            <div class="showinst">
+                <div class="showstitle">服务描述</div>
+                <div></div>
+            </div>
+            <div class="showinst">
+                <div class="showstitle">交易方式</div>
+                <div class="showway">
+                    <a href="#" class="active">货到付款</a>
+                    <a href="#">微信支付</a>
+                </div>
+            </div>
+            <div class="showinst">
+                <button class="butit">确认购买</button>
+            </div>
+
+            <input type="hidden" value="0" name="color" class="colorname" />
+            <input type="hidden" value="24" name="size" class="sizenumber" />
+            <!--交易方式 0货到付款1微信-->
+            <input type="hidden" value="0" name="buytipe" class="buyinput" />
+        </form>
+        <script type="text/javascript" src="js/sea.js"></script>
+        <script>
+            seajs.use(['zepto','tl_v1.0','buy']);
+        </script>
+    </body>
+</html>

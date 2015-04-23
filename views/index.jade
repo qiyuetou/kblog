@@ -1,20 +1,52 @@
-doctype html
-html(lang="en")
-  head
-    title= pageTitle
-    script(type='text/javascript').
-      if (foo) {
-         bar(1 + 5)
-      }
-  body
-    h1 a #{user}
-    #container.col
-      if youAreUsingJade
-        p You are amazing
-      else
-        p Get on it!
-      p.
-        Jade is a terse and simple
-        templating language with a
-        strong focus on performance
-        and powerful features.
+extend layout
+
+block css
+  link(rel="stylesheet" href="css/index.css")
+
+block content
+  div.index_block.index_title
+    div.index_titles
+      div.index_title HI! I AM Z.MOFEI!
+      div.index_subtitle When you can fly, don't give up flying.|When you can dream, don't give up dream.|When you can love, don't give up on love.|当你能飞的时候就不要放弃飞|当你能梦的时候就不要放弃梦|当你能爱的时候就不要放弃爱|——梦的起飞，朱文龙的自留地
+  div.index_block.index_about
+      div.aboutIntro
+        div.aboutName 朱文龙 (Mofei)
+        div.aboutWhite
+          div.aboutTitle 一个追梦的全栈工程师，已习得技能 HTML(5) , CSS(3) , JAVASCRIPT , NODE.JS , PHP , MONGODB,REDIS 
+          div.aboutInfo
+            span.aboutB(title="坐标")
+              span.aboutIcon  l
+              span  北京·海淀
+            span.aboutB(title="学历")
+              span.aboutIcon  e
+              span  上海交通大学
+            span.aboutB(title="工作") 
+              span.aboutIcon  w
+              span  百度·LBS
+            span.aboutB(title="兴趣") 
+              span.aboutIcon  h
+              span  摄影、游泳、旅游
+        div.aboutSocial
+          a(href="http://weibo.com/zwl1027" class="aboutSocialWeibo" target="_blank" title="新浪微博") weibo
+          a(href="http://t.qq.com/zwl1989" class="aboutSocialTweibo" target="_blank" title="腾讯微博") tweibo
+          a(href="http://sighttp.qq.com/authd?IDKEY=cde8616170a2ec05c94194754da4d618e5a33a16dd28b2b7" class="aboutSocialQQ" target="_blank" title="QQ") qq
+          //- a(href="#" class="aboutSocialWeixin" title="微信") weixin
+          a(href="http://www.linkedin.com/pub/mofei-zhu/76/914/a3" target="_blank" class="aboutSocialLinkedin" title="领英") linkenin
+          a(href="https://plus.google.com/117364054641606661534/" target="_blank" class="aboutSocialGoogleplus" title="google plus") googleplus
+          a(href="/img/index/cv.pdf" target="_blank" class="aboutSocialCV" title="个人简历") resume
+  div.index_block.index_doing
+    div.index_contact_box
+      div.index_cb_title LIFE & DREAM
+      p 我一直对自己说，当你能飞的时候就不要放弃飞翔，我喜欢一切新奇的东西，并渴望去亲身感受生命的色彩。
+      p 我想成为一个生活家，背上行囊行走于世界，随遇而安，触碰生命。
+      p 我想有一家“故事”店，接触不同背景的人们，听他们的故事，延展生命。
+      p 生活的真谛不在于你拥有生命，而在于你经历了什么。
+      p
+        a(href="#") [ 给我写信 ]
+
+
+block js
+  script(src="/js/index.js")
+
+
+

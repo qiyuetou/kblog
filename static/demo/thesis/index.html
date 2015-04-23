@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>基于node.js 的个人博客系统设计与实现</title>
+
+        <meta name="description" content="基于node.js 的个人博客系统设计与实现">
+        <meta name="author" content="朱文龙（Z.Mofei）">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write('<link rel="stylesheet" href="css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <section>
+                    <h1>NODE.js</h1>
+                    <h3>个人博客系统设计与实现</h3>
+                    <p>
+                        <small>Created by <a href="http://www.zhuwenlong.com">朱文龙</a></small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>背 景</h2>
+                    <ul style="line-height: 2em;">
+                        <li>
+                            &nbsp; 分享 &nbsp;<span class="fragment">[ 博客  ]</span>
+                        </li>
+                        <li>
+                            &nbsp; 技术 &nbsp;<span class="fragment">[ Node.js ]</span>
+                        </li>
+                        <li>
+                            &nbsp; 个性 &nbsp;<span class="fragment">[ 自定义 ]</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Example of nested vertical slides -->
+                <section>
+                    <section>
+                        <h2>实 现</h2>
+                        <Div style="color:#ccc; padding-top: 50px;">
+                            <p>
+                                成功 ＝ 艰苦的劳动 ＋ 正确的方法 ＋ 少说空话
+                            </p>
+                            <p style="text-align: right; padding-top:0.5em;">
+                                ——爱因斯坦
+                            </p>
+                        </Div>
+                    </section>
+                    <section>
+                        <h2>风格设计</h2>
+                        <p>
+                            <img src="images/bg.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            <img src="images/bg2.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <p>
+                            <img src="images/bg3.png" />
+                        </p>
+                    </section>
+                    <section>
+                        <h2>数据库</h2>
+                        <p>
+                             <img src="images/mongo.jpg" />
+                        </p>
+                        <ul style="line-height:2em">
+                            <li>快速!比一般的关系型数据库快5位左右!</li>
+                            <li>很高的可扩展性-轻轻松松就可实现PB级的存储</li>
+                            <li>有很完善的API</li>
+                            <li>存储格式是Json的</li>
+                            <li>运维起来非常方便-不用专门为它安排一个管理员</li>
+                            <li>……</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>逻辑实现</h2>
+                        <p>
+                             <img src="images/nodejs.jpg" />
+                        </p>
+                    </section>
+                    <section>
+                        <ul style="line-height:2em; list-style: none;">
+                            <h2>逻辑实现</h2>
+                            <li>☑ &nbsp;&nbsp; 代码逻辑</li>
+                            <li>☑ &nbsp;&nbsp; 数据交互</li>
+                            <li>✚ &nbsp;&nbsp; 地址路由器</li>
+                            <li>✚ &nbsp;&nbsp; Server服务器（HTTP协议）</li>
+                            <li>✚ &nbsp;&nbsp; 静态资源系统</li>
+                            <li>✚ &nbsp;&nbsp; 资源压缩（Gzip）</li>
+                            <li>✚ &nbsp;&nbsp; 流媒体加载技术</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>演 示</h2>
+                    <p>
+                         <a href="/" target="_blank">http://www.zhuwenlong.com</a>
+                    </p>
+                    <p>
+                        <a href="/z_admin" target="_blank">http://www.zhuwenlong.com/z_admin</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>谢谢观赏</h2>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls : true,
+                progress : true,
+                history : true,
+                center : true,
+
+                theme : Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition : Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies : [{
+                    src : 'lib/js/classList.js',
+                    condition : function() {
+                        return !document.body.classList;
+                    }
+                }, {
+                    src : 'plugin/markdown/marked.js',
+                    condition : function() {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                }, {
+                    src : 'plugin/markdown/markdown.js',
+                    condition : function() {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                }, {
+                    src : 'plugin/highlight/highlight.js',
+                    async : true,
+                    callback : function() {
+                        hljs.initHighlightingOnLoad();
+                    }
+                }, {
+                    src : 'plugin/zoom-js/zoom.js',
+                    async : true,
+                    condition : function() {
+                        return !!document.body.classList;
+                    }
+                }, {
+                    src : 'plugin/notes/notes.js',
+                    async : true,
+                    condition : function() {
+                        return !!document.body.classList;
+                    }
+                }]
+            });
+
+        </script>
+
+    </body>
+</html>

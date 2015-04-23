@@ -1,15 +1,13 @@
-var views = require('co-views');
-var render = views(__dirname + '/..', {
-    map: {
-        jade: 'jade'
-    }
-});
+var render = require('../views/readen.js');
 
 function* index() {
-    this.body = yield render('/views/index.jade', {
-        user: 'tobi'
+    var self = this;
+    
+    this.body = yield render('index.jade', {
+        sys: {
+            url: self.request.url
+        }
     });
 }
-
 
 module.exports = index;

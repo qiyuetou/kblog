@@ -1,0 +1,83 @@
+@import 'normalize.sass'
+@import "../common.sass"
+
+=blur($filter)
+	-webkit-filter: blur($filter)
+	-moz-filter: blur($filter)
+	-ms-filter: blur($filter)
+	filter: blur($filter)
+
+=transition($key)
+	-webkit-transition: $key
+	-moz-transition: $key
+	-ms-transition: $key
+	transition: $key
+
+.lab_comment 
+	width: 960px
+	margin: 0 auto
+	color: #fff
+	padding: 40px 0  70px 0
+	z-index: 10
+	position: relative
+	text-align: center
+
+.lab_block
+	margin: 10px 
+	background: rgba(255,255,255,1)
+	width: 235px
+	height: 328px
+	display: inline-block
+	border-radius: 4px
+	overflow: hidden
+	+transition(all 3s )
+	opacity: 0.85
+	color: #fff
+	text-decoration: none
+	box-shadow: 1px 1px 10px rgba(00,0,0,0.7)
+	p
+		margin: 0
+
+.lab_icon
+	font-size: 14px
+	text-align: center
+	padding-top: 158px
+	height: 78px
+	width: 100%
+	line-height: 28px
+	text-shadow: 1px 1px 1px #333
+
+.lab_icon_text
+	+transition(.5s all ease-in)
+.lab_icon_text_active
+	+blur(2px)
+.lab_block:hover 
+	opacity: 1
+	.lab_icon_text
+		+blur(0px)
+
+.lab_icon_title
+	font-size: 22px
+
+.lab_explain
+	line-height: 24px
+	text-align: left
+	color: #666
+	font-size: 12px
+	text-indent: 2em
+.lab_explain_title
+	text-indent: 0em
+	font-weight: bold
+	font-size: 20px
+	border-bottom: 1px dotted #ccc
+	//background: #ddd
+	padding: 5px 10px
+.lab_explain_text
+	padding: 5px 10px
+	word-break: break-all
+.lab_icon_msite
+	background: url('/img/lab/msite.jpg')
+	background-size: cover
+.lab_icon_mstaticize
+	background: url('/img/lab/mstaticize.jpg')
+	background-size: cover

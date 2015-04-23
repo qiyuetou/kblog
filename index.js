@@ -1,34 +1,34 @@
 var koa = require('koa');
 var logger = require('koa-logger');
 var route = require('koa-route');
-var views = require('co-views');
-var render = views(__dirname + '/views', {
-    map: {
-        jade: 'jade'
-    }
-});
+var staticFile = require('koa-static');
+var mongo = require('./mongo/mongo');
 
 var app = koa();
 
+
+
+//logger
 app.use(logger());
 
-function routePath(path) {
-    console.log('@@@@@', __dirname + '/route/' + path);
-    return require(__dirname + '/route/' + path);
+//mongodb
+app.use(mongo({
+    db: 'zhuwenlong',
+    user: 'zhuwenlong',
+    pwd: '123123'
+}));
+
+//statis
+app.use(staticFile('./static'));
+
+//route
+function requireRoute(router) {
+    return require('./route/' + router + '.js');
 }
 
+app.use(route.get('/', requireRoute('index')));
+app.use(route.get('/blog/:class/:page', requireRoute('blog')));
 
-var blog = require(__dirname + '/route/index.js');
-console.log(blog)
-app.use(route.get('/', index));
-app.use(route.get('/blog', routePath('index.js')));
-// app.use(route.get('/idea', idea));
-// app.use(route.get('/about', about));
 
-function* index() {
-    this.body = yield render('index.jade', {
-        user: 'tobi'
-    });
-}
-
+//listen the port
 app.listen(5123);

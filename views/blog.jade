@@ -1,0 +1,61 @@
+extend layout
+
+block css
+  link(rel="stylesheet" href="/css/blog/blog.css")
+
+block content
+  
+  section.blogContent
+    nav.blogNav
+      ul
+        li.blogNavTitle t 博文分类
+        li 
+          a(href="/blog" class=typeof classid=="undefined"?"active":"")= "全部分类 ("+ total+")"
+        if blogClass
+          - each classList in blogClass
+            li
+              a(href="/blog/" + classList.classid class=classList.classid==classid?"active":"")
+                = classList.classname + " ("+ classList.classcount + ")"
+          
+        
+    section.blogList
+      if blogList
+        - each blog in blogList
+          article
+            a(href='/blog/' + blog._id class="blogListItem")
+              header
+                time
+                  span.blogyear= new Date(blog.pubtime).getFullYear()
+                  span.blogmonth= (new Date(blog.pubtime).getMonth()+1)+'月'
+                  span.blogday= new Date(blog.pubtime).getDate()
+                h2= blog.title
+              div.blogListContent= blog.content.slice(0,200).replace(/[\#\=\-\*\n\r]/g,'') + ' ...'
+              footer 
+                span.blogVisited= 'r ' + blog.visited
+                span.blogComment= 'c ' + blog.comment
+      else
+        article.noarticle
+          p 该分类木有文章 :( 
+          p 或者。。你来到了一个别人从未到达的地方
+
+      section.blogpages
+
+        if(page.current>3)
+          a(href='/blog/'+ (classid?classid:0) + '/1' )= 1
+          if(page.current!=4)
+            a(class="blogpagesellip") ...
+
+        - for(var x=(page.current-2<1?1:page.current-2);x<page.current;x++)
+          a(href='/blog/'+ (classid?classid:0) + '/'+x )= x
+        
+        a(class="blogpagescurrent")= page.current
+
+        - for(var x=page.current+1;x<=(page.total-page.current>2?page.current+2:page.total);x++)
+          a(href='/blog/'+ (classid?classid:0) + '/'+x )= x
+
+        if(page.total-page.current>2)
+          if(page.total-page.current!=3)
+            a(class="blogpagesellip") ...
+          a(href='/blog/'+ (classid?classid:0) + '/'+page.total)= page.total
+
+block js
