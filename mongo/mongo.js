@@ -1,4 +1,7 @@
-var MongoClient = require('mongodb').MongoClient;
+var mongodb = require('mongodb');
+
+var MongoClient = mongodb.MongoClient;
+var MongoObject = mongodb.ObjectID;
 
 module.exports = mongo;
 
@@ -37,7 +40,7 @@ function mongo(options) {
     }
 
     return function* mongo(next) {
-
+        // console.log('xxxx');
         this.mongo = function(callback) {
             if (mongoConnect) {
                 callback && callback(mongoConnect);
@@ -45,6 +48,8 @@ function mongo(options) {
                 stack.push(callback)
             }
         };
+
+        this.mongoObj = MongoObject;
 
         yield * next;
     }

@@ -1,8 +1,8 @@
 var views = require('co-views');
-var render = views(__dirname , {
+var render = views(__dirname, {
     map: {
-             jade: 'jade'
-         }
+        jade: 'jade'
+    }
 })
 
-module.exports=render; 
+module.exports = render;
