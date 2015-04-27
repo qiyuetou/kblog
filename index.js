@@ -43,6 +43,11 @@ app.use(route.post('/blog/articleComment', requireRoute('blog_comment')));
 app.use(route.get('/verification/img', requireRoute('/verification/img')));
 
 //
+app.use(route.get('/about', function*() {
+    this.redirect('/#about')
+}));
+
+//
 app.use(route.get('/lab', requireRoute('lab')));
 
 //listen the port
