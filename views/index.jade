@@ -36,13 +36,24 @@ block content
           a(href="/img/index/cv.pdf" target="_blank" class="aboutSocialCV" title="个人简历") resume
   div.index_block.index_doing
     div.index_contact_box
-      div.index_cb_title LIFE & DREAM
-      p 我一直对自己说，当你能飞的时候就不要放弃飞翔，我喜欢一切新奇的东西，并渴望去亲身感受生命的色彩。
-      p 我想成为一个生活家，背上行囊行走于世界，随遇而安，触碰生命。
-      p 我想有一家“故事”店，接触不同背景的人们，听他们的故事，延展生命。
-      p 生活的真谛不在于你拥有生命，而在于你经历了什么。
-      p
-        a(href="#") [ 给我写信 ]
+      div.index_cb_title Send me Email
+      div.index_cb_main 
+        label
+          span Name:
+          input(type="text")
+        label
+          span Email:
+          input(type="text")
+        label
+          span Content:
+          textarea
+        label
+          span Verification:
+          input(type="text")
+          img(src="")
+        label
+          button 发送
+      
 
 
 block js
