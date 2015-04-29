@@ -10,6 +10,14 @@
 	font-weight: normal
 	font-style: normal
 
+@font-face
+	font-family: 'contact'
+	src: url('/fonts/index.eot?iqof2f')
+	src: url('/fonts/index.eot?#iefixiqof2f') format('embedded-opentype'), url('/fonts/index.woff?iqof2f') format('woff'), url('/fonts/index.ttf?iqof2f') format('truetype'), url('/fonts/index.svg?iqof2f#index') format('svg')
+	font-weight: normal
+	font-style: normal
+
+
 
 .aboutIcon
 	font-family: 'icomoon'
@@ -131,9 +139,11 @@
 	font-size: 12px
 	z-index: 100
 	background: rgba(0,0,0,0.4)
-	padding: 2em 2em 2em 1em
-	top: 10%
-	width: 100%
+	padding: 2em 2em 2em 2em
+	top: 15%
+	width: 600px
+	left: 50%
+	margin-left: -300px
 	max-height: 61.8%
 	overflow-y: auto
 	position: absolute
@@ -205,10 +215,53 @@
 			float: left
 			background: none
 			border: none
+			border-radius: 6px
 			outline: none
 			width: 200px
 			background: rgba(0,0,0,0.4)
-			padding: 5px 
+			padding: 5px 5px 5px 30px
+			position: relative
+			height: 20px
+		textarea
+			height: 80px
+			width: 400px
+		.index_cb_name:after,
+		.index_cb_email:after,
+		.index_cb_content:after,
+			text-align: center
+			display: block
+			position: absolute
+			width: 20px
+			height: 18px
+			font-family: 'contact'
+			left: 122px
+			top: 10px
+			z-index: 1000
+			border-right: 1px solid #aaa
+			color: #aaa
+		.index_cb_name:after
+			content: '\e074'
+		.index_cb_email:after
+			content: '\e002'
+		.index_cb_content:after
+			content: '\e076'
+		.index_cb_veri
+			padding-left: 105px
+			width: 125px
+		img
+			position: absolute
+			left: 120px
+			background: rgba(0,0,0,0.5)
+			border-radius: 6px 0 0 6px
+			border-right: 1px solid #666
+		button
+			border-radius: 4px
+			background: rgba(0,0,0,0.2)
+			border: 1px solid #ccc
+			background: none
+			font-size: 16px
+			padding: 5px 20px
+		position: relative
 		display: block
 		overflow: hidden
 		text-indent: 0
