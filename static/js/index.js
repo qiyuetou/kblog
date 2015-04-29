@@ -22,9 +22,6 @@ $(function() {
     }
     showTitles();
 
-
-
-
     //height
     $('.index_block').css({
         'height': document.body.clientHeight
@@ -80,6 +77,8 @@ $(function() {
         return false;
     }
 
+
+
     function moveto(index, callback) {
         var height = document.body.clientHeight * index;
         // console.log(height)
@@ -89,6 +88,13 @@ $(function() {
             callback && callback();
             moveHandle = true;
         });
+    }
+
+    //autoscroll
+    var tag = location.hash.replace('#', '');
+    if (tag) {
+        var index = $('div[tag=' + tag + ']').attr('index');
+        moveto(index);
     }
 
     var sending = false;
