@@ -22,7 +22,6 @@ function* blogComment(Tclass, Tpage) {
         }
     })();
 
-    console.log(dataObj.vcode, sessionCode)
     if (dataObj.vcode.toLowerCase() !== sessionCode.toLowerCase()) {
         this.body = "保存失败，验证码错误";
         return false;

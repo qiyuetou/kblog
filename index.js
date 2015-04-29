@@ -47,7 +47,8 @@ app.use(route.get('/about', function*() {
     this.redirect('/#about')
 }));
 
-// app.use()
+//api
+app.use(route.post('/api/sendemail', requireRoute('/api/sendemail')));
 
 //lab
 app.use(route.get('/lab', requireRoute('lab')));

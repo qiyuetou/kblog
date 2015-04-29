@@ -37,23 +37,23 @@ block content
   div.index_block.index_doing
     div.index_contact_box
       div.index_cb_title Send me Email
-      div.index_cb_main 
+      div.index_cb_main
         label
           span.index_cb_name Name:
-          input(type="text")
+          input(type="text",name="username")
         label
           span.index_cb_email Email:
-          input(type="text")
+          input(type="text",name="email")
         label
           span.index_cb_content Content:
-          textarea
+          textarea(name='content')
         label
           span Verification:
-          input.index_cb_veri(type="text")
-          img(src="/verification/img")
+          input.index_cb_veri(type="text",name="vcode")
+          img.vcode(src="/verification/img")
         label
           span 
-          button Send to me
+          button.sendemail Send to me
       
 
 

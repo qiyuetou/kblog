@@ -91,4 +91,37 @@ $(function() {
         });
     }
 
+    var sending = false;
+    $('.sendemail').on('click', function() {
+        if (sending) {
+            return false;
+        }
+        sending = true;
+        var self = $(this);
+        self.html('sending...');
+        var data = {};
+        data.username = $('input[name="username"]').val();
+        data.email = $('input[name="email"]').val();
+        data.content = $('textarea[name="content"]').val();
+        data.vcode = $('input[name="vcode"]').val();
+        $.ajax({
+            'url': '/api/sendemail',
+            'method': 'post',
+            'data': data,
+            'success': function(data) {
+                if (data.meta.code == 200) {
+                    $('input[name="username"]').val('');
+                    $('input[name="email"]').val('');
+                    $('textarea[name="content"]').val('');
+                    alert('您的留言已经收到，如有必要，我会第一时间回复，谢谢')
+                } else {
+                    alert('啊哦，发送失败');
+                }
+                $('.vcode').attr('src', '/verification/img?v=' + Math.random());
+                $('input[name="vcode"]').val('');
+                self.html('Send to me');
+                sending = false;
+            }
+        })
+    })
 });
