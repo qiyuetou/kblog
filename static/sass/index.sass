@@ -269,5 +269,39 @@
 
 
 
+.index_next
+	display: none
+	cursor: pointer
+	position: absolute
+	width: 60px
+	height: 60px
+	overflow: hidden
+	left: 50%
+	right: 50%
+	bottom: 80px
+	color: #fff
+	z-index: 10000
+	margin-left: -30px
+	&::before
+		-webkit-animation: 1.5s myfirst infinite ease-in
+		font-family: "contact"
+		font-size: 60px
+		content: '\e600'
+		position: relative
+
+
+@-webkit-keyframes myfirst
+	0%
+		top: 0
+		text-shadow: 0 0 0 #fff
+		opacity: 0.2
+	30% 
+		top: 8px
+		text-shadow: 0 0 20px #fff
+		opacity: 0.8
+	100%
+		top: 0
+		text-shadow: 0 0 0 #fff
+		opacity: 0.2
 
 

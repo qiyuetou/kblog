@@ -78,8 +78,18 @@ $(function() {
     }
 
 
+    //next button
+    var nextBtn = setTimeout(function() {
+        $('.index_next').fadeIn();
+    }, 2000)
+    $('.index_next').on('click', function() {
+        moveto(1);
+    })
 
     function moveto(index, callback) {
+        clearTimeout(nextBtn);
+        $('.index_next').hide();
+
         var height = document.body.clientHeight * index;
         // console.log(height)
         $('body,html').animate({
