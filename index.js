@@ -22,7 +22,7 @@ app.use(mongo({
 }));
 
 //static
-app.use(staticFile('./static'));
+app.use(staticFile('./static',{'maxage':1000*3600*24*30}));
 
 //route
 function requireRoute(router) {
