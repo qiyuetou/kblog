@@ -21,8 +21,28 @@ app.use(mongo({
     pwd: '123123'
 }));
 
+
+//vhost
+app.use(function*(next) {
+    var vhost = this.hostname.split('.');
+    if (vhost.length >= 3) {
+        if (vhost[0] == 'msite') {
+            yield require('./vhost/msite/index').call(this, next);
+        } else if (vhost[0] == 'mstaticize') {
+            yield require('./vhost/mstaticize/index').call(this, next);
+        } else if (vhost[0] == 'www') {
+            yield next;
+        }
+        return false;
+    }
+    // yield next;
+});
+
+
 //static
-app.use(staticFile('./static',{'maxage':1000*3600*24*30}));
+app.use(staticFile('./static', {
+    'maxage': 1000 * 3600 * 24 * 30
+}));
 
 //route
 function requireRoute(router) {

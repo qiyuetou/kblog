@@ -1,0 +1,154 @@
+doctype html
+
+html
+  head
+    meta(content="text/html" charset="UTF-8")
+    meta(name="description" content="一个轻量级，基于文件系统的node.js web server框架")
+    meta(name="author" content="朱文龙")
+    meta(name="author" content="Z.Mofei")
+    meta(name="keywords" content="朱文龙,Z.Mofei,Mofei,node.js,web server,框架")
+    title mSite,快速搭建node.js网站
+    link(rel="stylesheet" href="/highlight/styles/atelier-forest.light.css")
+    link(rel="stylesheet" href="/css/index.css")
+    link(rel="shortcut icon" href="/favorite.ico")
+  body
+    nav.topnav
+      span mSite BY
+      a(href="http://www.zhuwenlong.com") Z.Mofei
+
+    h1.title 
+      span
+        img(src="/img/msiteIcon.png")
+      span mSite
+    h2 一个轻量级，基于文件系统的node.js web server框架
+
+    div.github
+      a(href="https://github.com/zmofei/mSite")
+        img(style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png")
+
+    div.main
+      .main_block
+        div.main_title 安装
+        pre.main_block
+          code $ npm install msite
+      hr
+      .main_block
+        div.main_title 用法
+        .main_block
+          .main_title 启动服务
+          pre.main_block
+            code
+              |  var app = require('msite');
+              |  app.start('9999');
+          .main_block 服务创建完成之后就可以尝试访问 http://127.0.0.1:9999 （9999为用户指定的启动端口）
+          hr
+        .main_block
+          div.main_title 文件系统
+          div.main_block 
+            p mSite是一个基于文件系统的框架，在启动服务之后，用户访问某个地址会通过以下规则进行处理：
+            p
+              img(src="/img/msite.jpg")
+          hr
+          div.main_title MIME
+          div.main_block 
+            p mSite 默认只允许访问在mime列表中的静态文件，如css,jpg等，如果用户需要访不在列表中的文件，可以通过 mime 方法进行添加、删除允许访问的文件类型，
+          hr
+          .main_title mime.add()
+          .main_block 
+            p 如需要添加exe类型的文件访问权限：
+            pre
+              code.javascript
+                | app.mime.add({"exe":"plan/application"})
+          hr
+          .main_title mime.remove()
+          .main_block 
+            p 如需要删除css类型的文件访问权限：
+            pre
+              code.javascript
+                | app.mime.remove('css');
+        hr
+        .main_block
+          .main_title 模版、视图文件
+          .main_block 
+            p.deeppink mSite目前使用的模版为Jade，这意味着我们使用Jade的语法，关于Jade的相关资料可查阅
+              a(href="http://jade-lang.com/reference/#casefallthrough" target="_blank") Jade language Reference
+            p 我们约定 同一目录下的.js文件为数据层，用以从数据库或者其他任何地方取到数据，.jade为视图层，用以显示页面视图。
+            p 当用户访问一个路径时，我们会首先尝试读取 .js 文件是否存在，如果存在我们会加载并执行这个文件。
+            p 如果页面 xx.js 存在 xx.jade 不存在，我们会执行 xx.js 并且，此时用户需要自行通过 exports.model 操作 res ，具体见下面的示例
+            p 如果页面 xx.js 不存在，但是 xx.jade 存在的话，我们会去解析 .jade 并返回给浏览器。
+            p 如果 xx.js 和 xx.jade 同时不在的话，我们会吧 xx 当成目录地址，并尝试访问 /xx/index.js 和 /xx/index.jade，处理逻辑同上，如果均不存在的话，我们会返回404.
+            hr
+            p 当你需要返回数据给view使用的时候你可以通过下面的 exports.model 方法进行返回：
+            pre
+              code.javascript
+                |  //其他的业务逻辑
+                |  exports.model = function(req, res, callback) {
+                |      //req和res为此次请求的request 和 response ，可以直接操作 如 res.end('124') 但是不推荐
+                |      //callbakc 用以返回数据给view ,参数为 Json 格式的数据 如 model = {titke:123,page:456}
+                |      callback(model)
+                |  })
+
+        hr
+        .main_block
+          div.main_title 路由
+          div.main_block
+              p 大多数情况下文件系统能满足我们很多的需求，但是任然在很多情况下我们需要通过配置路由来实现更多的功能，比如我们希望 /blog/article/12414 能指向到 /article.js 和 article.jade 并且把 12414 作为参数传递给 article.js 以便我们根据参数，从数据库取得相应的数据。
+              hr
+              .main_title .get(rule,path,option)
+              .main_block 
+                ul
+                  li rule 路由规则
+                  li path 路由对应的文件路径
+                  li option.mime 自定义路由mime（mSite中动态文件默认为"text/html",如果需要修改成其他类型的mime时，可以使用该方法。如修改"/rss"的 MIME 为 "application/rss+xml" ）
+                p 在mSite中，我们可以通过get方法来指定特殊的路由，对于刚刚的例子我们可以使用以下的方法来指定路由：
+                hr
+                p.deepskyblue app.js
+                pre
+                  code.javascript
+                    |  var app = require('msite');
+                    |  //the router
+                    |  app.get(/\/blog\/article\/(\d{5})$/, 'article');
+                    |  app.start('9999');
+                p 此时所有的请求，只要符合正则表达式 /\/blog\/article\/(\d{5})$/ 都会被指向到 article ， 更加令人愉快的是，正则的子选择器 (\d{5}) 这里匹配的是 12414 也会通过 params 传递给 .js，我们可以通过 .js 的model方法的 req 取到这些值：
+                hr
+                p.deepskyblue  article.js
+                pre
+                  code.javascript
+                    | exports.model = function(req, res, callback) {
+                    |    console.log(req.params[1]); //我们路由中正则匹配到的值，这里为 12414
+                    | }
+                p.deeppink  * 后续我会添加更为简单的匹配方法，例如你可以简单的写上 blog/:id 就能匹配到相应的路径，并且把id作为参数传递给 req
+        hr
+        .main_block
+          div.main_title 别名 
+          div.main_block
+            p.main_title .alias(aliasName[,aliasPath])
+            div.main_block
+              p mSite同时可以支持别名机制，用户可以简单的通过 alias() 方法指定别名路径
+              p 如果你的域名为 zhuwenlong.com 你想实现一个 msite.zhuwenlong.com 你可以简单的通过下面的方法实现
+              pre
+                code.javascript
+                  |  var app = require('msite');
+                  |  app.alias('msite','/msite'); //所有mstie.xx.xx的请求将会被指向到 /miste目录下
+                  |  app.start('9999');
+              p 在.alias中你可以在指定别名的同时指定文件位置，缺省情况下会被指向到根目录下面的同名目录
+        hr
+        .main_block
+          div.main_title 关于项目
+          div.main_block
+            p GitHub  
+              a(href="https://github.com/zmofei/mSite" target="_blank") https://github.com/zmofei/mSite 
+            p 问题提交   
+              a(href="https://github.com/zmofei/mSite/issues " target="_blank") https://github.com/zmofei/mSite/issues 
+            p 关于作者
+              a(href="http://www.zhuwenlong.com " target="_blank") http://www.zhuwenlong.com
+
+    footer
+      p Powered By 
+        a(href="http://www.zhuwenlong.com" target="_blank") zhuwenlong.com
+      p 
+    .script
+      script(src="/js/analytical.js")
+      script(src="/highlight/highlight.pack.js")
+      script.
+        hljs.initHighlightingOnLoad();
