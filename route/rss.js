@@ -11,10 +11,6 @@ function* rss(Tclass, Tpage) {
                 db.collection('blog').find({}).sort({
                     '_id': -1
                 }).limit(20).toArray(function(err, res) {
-                    for (var i = 0; i < res.length; i++) {
-                        res[i].content = escape(res[i].content)
-                    }
-                    console.log(res);
                     callback(null, res);
                 });
             });
