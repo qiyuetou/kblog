@@ -19,7 +19,7 @@ rss(version="2.0",xmlns:atom="http://www.w3.org/2005/Atom")
 			item
 				title= list.title
 				link= 'http://www.zhuwenlong.com/blog/'+list._id
-				description= '<![CDATA['+ list.content +']]>'
+				description= list.content
 				author <![CDATA[hello@zhuwenlong.com(朱文龙,Z.Mofei)]]>
 				comments= 'http://www.zhuwenlong.com/blog/'+list._id
 				pubDate= list.pubtime.toGMTString()
