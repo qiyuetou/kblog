@@ -30,12 +30,12 @@ app.use(function*(next) {
             yield require('./vhost/msite/index').call(this, next);
         } else if (vhost[0] == 'mstaticize') {
             yield require('./vhost/mstaticize/index').call(this, next);
-        } else if (vhost[0] == 'www') {
+        } else if (vhost[0] == 'www' || vhost[0] == '127') {
             yield next;
         }
         return false;
     }
-    // yield next;
+    yield next;
 });
 
 
@@ -66,6 +66,9 @@ app.use(route.get('/verification/img', requireRoute('/verification/img')));
 app.use(route.get('/about', function*() {
     this.redirect('/#about')
 }));
+
+//rss
+app.use(route.get('/rss', requireRoute('/rss')));
 
 //api
 app.use(route.post('/api/sendemail', requireRoute('/api/sendemail')));
