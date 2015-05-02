@@ -11,14 +11,18 @@ function* rss(Tclass, Tpage) {
                 db.collection('blog').find({}).sort({
                     '_id': -1
                 }).limit(20).toArray(function(err, res) {
-                    callback(null, res)
+                    for (var i = 0; i < res.length; i++) {
+                        res[i].content = escape(res[i].content)
+                    }
+                    console.log(res);
+                    callback(null, res);
                 });
             });
         }
     }
 
     model.listS = yield getData();
-
+    this.type = 'application/xml';
     this.body = yield render('rss.jade', model);
 }
 
