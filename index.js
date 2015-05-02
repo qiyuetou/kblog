@@ -64,7 +64,8 @@ app.use(route.get('/verification/img', requireRoute('/verification/img')));
 
 //about
 app.use(route.get('/about', function*() {
-    this.redirect('/#about')
+    this.status = 301;
+    this.redirect('/#about');
 }));
 
 //rss

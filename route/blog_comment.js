@@ -22,8 +22,12 @@ function* blogComment(Tclass, Tpage) {
         }
     })();
 
-    if (dataObj.vcode.toLowerCase() !== sessionCode.toLowerCase()) {
-        this.body = "保存失败，验证码错误";
+    if (!sessionCode || dataObj.vcode.toLowerCase() !== sessionCode.toLowerCase()) {
+        // this.body = "保存失败，验证码错误";
+        // showHTML('保存失败，验证码错误');
+        self.body = yield render('blog_comment.jade', {
+            text: '保存失败，验证码错误'
+        });
         return false;
     }
 
@@ -122,7 +126,11 @@ function* blogComment(Tclass, Tpage) {
             sendInfo.replayText = dataObj.content;
             sendmail(sendInfo);
 
-            self.body = '保存成功';
+            // self.body = '保存成功';
+            // showHTML('保存成功');
+            self.body = yield render('blog_comment.jade', {
+                text: '保存成功'
+            });
 
             return false;
         }
@@ -169,7 +177,17 @@ function* blogComment(Tclass, Tpage) {
         });
     };
 
-    this.body = "保存失败";
+    // this.body = "保存失败";
+    // showHTML('保存失败');
+    self.body = yield render('blog_comment.jade', {
+        text: '保存失败'
+    });
+
+
+    // function showHTML(text) {
+
+    // }
+
 
 }
 
