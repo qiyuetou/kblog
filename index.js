@@ -30,7 +30,7 @@ app.use(function*(next) {
             yield require('./vhost/msite/index').call(this, next);
         } else if (vhost[0] == 'mstaticize') {
             yield require('./vhost/mstaticize/index').call(this, next);
-        } else if (vhost[0] == 'www' || vhost[0] == '127') {
+        } else if (vhost[0] == 'www' || vhost[0] == '127' || vhost[0] == '121') {
             yield next;
         }
         return false;
