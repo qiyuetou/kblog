@@ -23,6 +23,8 @@
 	text-align: center
 
 .lab_block
+	overflow: hidden
+	float: left
 	margin: 10px 
 	background: rgba(255,255,255,1)
 	width: 235px
@@ -81,3 +83,10 @@
 .lab_icon_mstaticize
 	background: url('/img/lab/mstaticize.jpg')
 	background-size: cover
+
+
+@media (max-width: 560px)
+	.lab_comment
+		width: auto
+	.lab_block
+		float: none
