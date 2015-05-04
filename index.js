@@ -2,6 +2,7 @@
 var koa = require('koa');
 var logger = require('koa-logger');
 var route = require('koa-route');
+var router = require('koa-router');
 var staticFile = require('koa-static');
 var mongo = require('./mongo/mongo');
 var session = require('./session/session');
@@ -49,15 +50,21 @@ function requireRoute(router) {
     return require('./route/' + router + '.js');
 }
 
+app.use(router(app));
 
 //index
-app.use(route.get('/', requireRoute('index')));
+// app.use(route.get('/', requireRoute('index')));
+app.get('/', requireRoute('index'));
 
 //blog
-app.use(route.get('/blog/:class/:page', requireRoute('blog')));
-app.use(route.get('/blog/:class', requireRoute('blog')));
-app.use(route.get('/blog', requireRoute('blog')));
-app.use(route.post('/blog/articleComment', requireRoute('blog_comment')));
+app.get('/blog', requireRoute('blog'));
+app.get('/blog/:Tclass/:Tpage', requireRoute('blog'));
+app.get('/blog/:Tclass', requireRoute('blog'));
+app.post('/blog/articleComment', requireRoute('blog_comment'));
+// app.use(route.get('/blog', requireRoute('blog')));
+// app.use(route.get('/blog/:class/:page', requireRoute('blog')));
+// app.use(route.get('/blog/:class', requireRoute('blog')));
+// app.use(route.post('/blog/articleComment', requireRoute('blog_comment')));
 
 //verification
 app.use(route.get('/verification/img', requireRoute('/verification/img')));

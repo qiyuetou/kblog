@@ -1,8 +1,13 @@
 var render = require('../views/readen.js');
 
-function* blogList(Tclass, Tpage) {
+function* blogList() {
 
     var self = this;
+
+    var Tclass = this.params.Tclass;
+    // console.log('@@@@@',Tclass)
+    var Tpage = this.params.Tpage;
+
 
     var model = {};
 
@@ -59,8 +64,9 @@ function* blogList(Tclass, Tpage) {
             self.mongo(function(db) {
                 //class
                 var blogQuery = {};
-                if (typeof(Tclass) == 'string') {
-                    model.classid = blogQuery.classid = Tclass || 0;
+                if (Tclass != 0 && typeof(Tclass) == 'string') {
+                    console.log('xxxx', Tclass);
+                    model.classid = blogQuery.classid = Tclass;
                 }
 
                 var tarBlog = db.collection('blog').find(blogQuery);

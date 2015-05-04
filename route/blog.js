@@ -4,9 +4,10 @@ var blogComment = require('./blog_comment.js');
 
 var render = require('../views/readen.js');
 
-function* blog(Tclass, Tpage) {
-    var self = this;
-    if (Tclass.length == '24') {
+function* blog() {
+    var Tclass = this.params.Tclass;
+    var Tpage = this.params.Tpage;
+    if (Tclass && Tclass.length == '24') {
         yield article.apply(this, arguments);
     } else {
         yield blogList.apply(this, arguments);
