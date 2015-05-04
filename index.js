@@ -77,5 +77,8 @@ app.use(route.post('/api/sendemail', requireRoute('/api/sendemail')));
 //lab
 app.use(route.get('/lab', requireRoute('lab')));
 
+//lab
+app.use(route.get('/links', requireRoute('links')));
+
 //listen the port
 app.listen(5123);
