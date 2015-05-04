@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>管理后台登陆 Mofei梦的起飞--朱文龙的自留地</title>
+		<link href="/static/css/base.css" type="text/css" rel="stylesheet" />
+		<link href="/static/css/css.css" type="text/css" rel="stylesheet">
+		<link href="/static/css/admin.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="/static/js/jquery-1.7.1.js"></script>
+		<script type="text/javascript">
+            $(function() {
+                if (/check=wrong/.test(location.search)) {
+                    $('form').prepend('<div style="color:red;text-align:center; background:rgba(00,00,00,0.55); padding:5px 0;">验证失败，请勿非法登陆</div>');
+                }
+            });
+		</script>
+	</head>
+	<body>
+		<section class="index">
+			<div class="index_share">
+				Fellow me: <a href="http://weibo.com/zwl1027" target="_blank">新浪微博</a>
+				<a href="http://t.qq.com/zwl1989" target="_blank">腾讯微博</a>
+				<a href="http://www.renren.com/zwl2008" target="_blank">人人</a>
+				<a href="https://plus.google.com/117364054641606661534?rel=author" target="_blank">GOOGLE Plus</a>
+				<a href="/rss" target="_blank">RSS</a>
+			</div>
+			<div class="admin_login">
+				<div class="adming_title">
+					管理后台登陆
+				</div>
+				<form action="/z_admin/logincheck" method="post">
+					<div class="adming_loginBlock">
+						<label>用户名：</label>
+						<input type="text" name="username">
+					</div>
+					<div class="adming_loginBlock">
+						<label>密码：</label>
+						<input type="password" name="pwd">
+					</div>
+					<div class="admin_submit">
+						<input type="submit" value="登陆" />
+					</div>
+				</form>
+			</div>
+			<nav class="mf_nav">
+				<div class="mf_nav_logo">
+					<div class="mf_nav_logo_title">
+						ZHUWENLOG.com
+					</div>
+					<div class="mf_nav_logo_subtitle">
+						朱文龙的自留地
+					</div>
+				</div>
+				<div class="mf_nav_area">
+					<ul >
+						<li>
+							<a href="/" class="mf_nav_active" >主页</a>
+						</li>
+						<li>
+							<a href="/blog" class="">博客</a>
+						</li>
+						<li>
+							<a href="/about" class="">关于</a>
+						</li>
+						<li>
+							<a href="/idea" class="">实验</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</section>
+		<script type="text/javascript" src="/static/js/plug/analytical.js"></script>
+	</body>
+</html>

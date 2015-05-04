@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>简易管理后台</title>
+        <meta name="author" content="Mofei" />
+        <link href="/static/plug/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="row container">
+            <p>&nbsp;</p>
+            <div class="alert alert-info">
+                欢迎 <strong>{{username}}</strong> ({{userid}})
+            </div>
+
+            <ul class="nav nav-tabs  nav-stacked">
+                <li>
+                    <a href="/z_admin/blog" ><i class="icon-align-justify"> </i> 博文管理</a>
+                </li>
+                <li>
+                    <a href="/z_admin/blogclass" ><i class="icon-check"> </i> 博客分类管理</a>
+                </li>
+                <li>
+                    <a href="/z_admin/blogcomment" ><i class="icon-check"> </i> 博客评论管理</a>
+                </li>
+                <li>
+                    <a href="/z_admin/backup" ><i class="icon-download"> </i> 数据库备份</a>
+                </li>
+                <li>
+                    <a href="/z_admin/user" ><i class="icon-user"> </i> 用户管理</a>
+                </li>
+                <li>
+                    <a href="https://api.weibo.com/oauth2/authorize?client_id=3314722704&response_type=code&redirect_uri=http://www.zhuwenlong.com/z_admin/login/weibo" ><i class="icon-share"> </i> 微博授权</a>
+                </li>
+            </ul>
+        </div>
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-32880285-1']);
+            _gaq.push(['_setDomainName', 'zhuwenlong.com']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </body>
+</html>
+

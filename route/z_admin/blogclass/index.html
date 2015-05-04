@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>博客分类管理</title>
+        <meta name="author" content="Ｍofei" />
+        <link href="/static/plug/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="row container">
+            <p>
+                <a href="/z_admin" class="badge badge-info">返回功能选择</a>
+            </p>
+            <p>
+                <a href="#" class="badge badge-info OP_newClass">新建分类</a>
+            </p>
+            <table class="table table-striped" >
+                <tbody>
+                    <tr>
+                        <th>classname</th><th>classid</th><th>classcount</th><th>_id</th><th>操作</th>
+                    </tr>
+                    <form action="/z_admin/blogclass/add" method="post">
+                        <tr class="success" style="display:none;" >
+                            <td>
+                            <input type="text" name="classname" />
+                            </td><td>
+                            <input type="number"  name="classid"  style="width:60px;"  />
+                            </td><td>
+                            <input type="text" name="classcount" style="width:60px;" disabled="disabled" />
+                            </td><td>
+                            <input type="text" name="_id" disabled="disabled"  />
+                            </td><td>
+                            <button type="submit">
+                                新建分类
+                            </button></td>
+                        </tr>
+                    </form>
+                    {{#each list}}
+                    <tr>
+                        <td>{{classname}}</td><td>{{classid}}</td><td>{{classcount}}</td><td>{{_id}}</td><td><a href="#" class="OP_edit">编辑</a>|<a href="/z_admin/blogclass/remove?_id={{_id}}" class="OP_delete">删除</a></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <script src="/static/js/jquery-1.7.1.js"></script>
+        <script>
+            var tar = $('tr:eq(1)');
+            var tarInp=tar.find('input');
+            $('.OP_newClass').on('click', function() {
+                tarInp.val('');
+                tarInp.removeAttr('disabled');
+                tar.find('input:eq(2),input:eq(3)').attr('disabled','disabled');
+                tar.find('button').html('new Class');
+                tar.show();
+            });
+            
+            $('.OP_edit').on('click',function(){
+                tarInp.val('');
+                tarInp.removeAttr('disabled');
+                tar.find('button').html('edit Class');
+                tar.show();
+                
+                var that=$(this);
+                var par=that.parents('tr');
+                var classname=par.find('td:eq(0)').html();
+                var classid=par.find('td:eq(1)').html();
+                var classcount=par.find('td:eq(2)').html();
+                var _id=par.find('td:eq(3)').html();
+                tar.find('input:eq(0)').val(classname);
+                tar.find('input:eq(1)').val(classid);
+                tar.find('input:eq(2)').val(classcount);
+                tar.find('input:eq(3)').val(_id);
+                return false;
+            });
+            
+            $('.OP_delete').on('click',function(){
+                if(!confirm('确认删除？')){
+                    return false;
+                }
+            });
+        </script>
+    </body>
+</html>
