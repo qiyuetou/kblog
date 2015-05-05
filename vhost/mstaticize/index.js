@@ -17,10 +17,7 @@ msite.use(staticFile(__dirname + '/static', {
 }));
 
 msite.use(function*(next) {
-    // yield next;
-    // if ('/' != this.url) return;
     this.body = yield render('./index.jade', {});
-    // this.body = '2Hello from www app';
 });
 
 function compose(middleware) {

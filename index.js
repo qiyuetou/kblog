@@ -6,6 +6,7 @@ var router = require('koa-router');
 var staticFile = require('koa-static');
 var mongo = require('./mongo/mongo');
 var session = require('./session/session');
+var vhost = require('./vhost/index');
 
 var app = koa();
 
@@ -24,20 +25,8 @@ app.use(mongo({
 
 
 //vhost
-app.use(function*(next) {
-    var vhost = this.hostname.split('.');
-    if (vhost.length >= 3) {
-        if (vhost[0] == 'msite') {
-            yield require('./vhost/msite/index').call(this, next);
-        } else if (vhost[0] == 'mstaticize') {
-            yield require('./vhost/mstaticize/index').call(this, next);
-        } else if (vhost[0] == 'www' || vhost[0] == '127' || vhost[0] == '121') {
-            yield next;
-        }
-        return false;
-    }
-    yield next;
-});
+
+app.use(vhost);
 
 
 //static
