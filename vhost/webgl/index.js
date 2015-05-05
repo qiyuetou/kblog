@@ -2,7 +2,7 @@ var koa = require('koa');
 var staticFile = require('koa-static');
 var render = require('../../views/readen.js');
 
-var msite = koa();
+var webgl = koa();
 
 
 var views = require('co-views');
@@ -12,11 +12,11 @@ var render = views(__dirname, {
     }
 });
 
-msite.use(staticFile(__dirname + '/static', {
+webgl.use(staticFile(__dirname + '/static', {
     'maxage': 1000 * 3600 * 24 * 30
 }));
 
-msite.use(function*(next) {
+webgl.use(function*(next) {
     this.body = yield render('./index.jade', {});
 });
 
@@ -31,4 +31,4 @@ function compose(middleware) {
     }
 }
 
-module.exports = compose(msite.middleware);
+module.exports = compose(webgl.middleware);

@@ -1,0 +1,95 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*-webkit-filter: blur(2px);*/
+}
+
+.bgcover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.bgcover .title {
+    color: white;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px 0;
+}
+
+.sub-title {
+    text-align: right;
+    color: #ccc;
+    font-size: 12px;
+    padding-right: 10px;
+    text-shadow: 0px 0px 3px #000;
+    /*background: rgba(255,255,255,0.4);*/
+    /*padding:5px 0;*/
+}
+
+.copyRight {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 20px;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 10px 0;
+}
+
+.copyRight a {
+    color: #fff;
+}
+
+.main {
+    position: absolute;
+    top: 100px;
+    bottom: 50px;
+    left: 60px;
+    right: 60px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.main-block {
+    float: left;
+    width: 200px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    height: 124px;
+    border-radius: 6px;
+    margin: 0 15px 15px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-block img {
+    width: 200px;
+    height: 124px;
+    border-radius: 6px;
+}
+
+.main-title {
+    position: absolute;
+    height: 22px;
+    top: 50%;
+    margin-top: -16px;
+    width: 100%;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 0;
+    text-align: center;
+}

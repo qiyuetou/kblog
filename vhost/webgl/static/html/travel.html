@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+    <script src="/js/travel/tree.js"></script>
+    <script src="/js/travel/trackballControls.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/travel/main.css">
+</head>
+
+<body>
+    <div id="main"></div>
+    <div style="position:absolute; top:0; right:0; color:#ccc; background:rgba(255,255,255,0.2); font-size:12px; line-height:1.8em; padding:10px;">
+        <p style="font-size:22px; padding-bottom:10px;">世界探险家路径图</p>
+        <div>
+            <label>
+                <input type="radio" name="maptype" value="0" checked="checked"> 透明地球版图
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="radio" name="maptype" value="1"> 不透明地球版图
+            </label>
+        </div>
+        <p style="text-align:right; color:#999">数据来源NASA</p>
+    </div>
+    <div style="position:absolute;bottom:0px; right:0px; max-top:100px; color:#999; line-height:1.6em; font-size:12px;" class="infoPan">
+    </div>
+    <!---->
+    <script src="/js/travel/jquery.js"></script>
+    <script src="/js/travel/countryData.js"></script>
+    <script src="/js/travel/points.js"></script>
+    <script src="/js/travel/word.json"></script>
+    <script src="/js/travel/tessalator3d.js"></script>
+    <script src="/js/travel/main.js"></script>
+    <script src="/js/travel/ui.js"></script>
+</body>
+
+</html>
