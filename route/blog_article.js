@@ -3,9 +3,12 @@ var render = require('../views/readen.js');
 var ObjectID = require('mongodb').ObjectID;
 var marked = require('marked');
 
-function* blogList(Tclass, Tpage) {
+function* blogList() {
 
     var self = this;
+
+    var Tclass = this.params.Tclass;
+    var Tpage = this.params.Tpage;
 
     var id = ObjectID(Tclass);
 

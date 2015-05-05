@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<title>blogpub</title>
+		<link href="/static/plug/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+	</head>
+	<body>
+		<!--<div class="row container">-->
+		<div>
+			<p>
+				<h1 class="center">blog pub</h1>
+			</p>
+			<form action="/z_admin/blogsave" method="post" >
+				<input type="hidden" value="{{blogid}}" name="blogid" />
+				<div>
+					<label class="control-label span1">Title:</label>
+					<input type="text" class="span10" name="blogtitle" value="{{blogT}}" />
+				</div>
+				<div>
+					<label class="control-label span1">Class:</label>
+					<select name="blogclass">
+						{{{blogClassHtml}}}
+					</select>
+				</div>
+				<div style="overflow:hidden;">
+					<div style=" overflow:hidden; margin:0 20px;">
+						<textarea  id="myEditor" name="blogtext" class="span10" style="height:500px; float:left; width:49%;">{{blogC}}</textarea>
+						<div class="span10" style="width:48%;" id="text-pre"></div>
+					</div>
+				</div>
+				<div>
+					<label class="span1">&nbsp;</label>
+					<button type="submit" class="btn">
+						发布
+					</button>
+				</div>
+			</form>
+		</div>
+		<script src="/static/js/jquery-1.7.1.js"></script>
+		<script src="/static/plug/ueditor1_2_5_1-utf8-php/editor_config.js"></script>
+		<script src="/static/plug/ueditor1_2_5_1-utf8-php/editor_all_min.js"></script>
+		<script src="/static/js/plug/markdown.js"></script>
+		<script>
+			var editor = new UE.ui.Editor();
+			$('#myEditor').on('keyup',function(){
+				$('#text-pre').html(markdown.toHTML($(this).val()));
+			});
+            //editor.render("myEditor");
+		</script>
+		<script type="text/javascript" src="/static/js/plug/analytical.js"></script>
+	</body>
+</html>

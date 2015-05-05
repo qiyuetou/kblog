@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>简易管理后台</title>
+        <meta name="author" content="Mofei" />
+        <link href="/static/plug/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <div>
+            <a href="/z_admin" class="badge badge-info">返回功能选择</a>
+        </div>
+        <p>
+
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>ID</th><th>username</th><th>password</th><th>修改</th><th>删除</th>
+                    </tr>
+                    <form action="/z_admin/user/edit" method="post">
+                        <tr>
+                            <td>
+                            <input name="_id" />
+                            </td><td>
+                            <input name="username" />
+                            </td><td>
+                            <input name="password" />
+                            </td>
+                            <td colspan="2">
+                            <input type="submit" value="确定" />
+                            </td>
+                        </tr>
+                    </form>
+                    {{#each data}}
+                    <tr>
+                        <td>{{_id}}</td><td>{{username}}</td><td>{{password}}</td><td><a href="#">修改</a></td><td><a href="#">删除</a></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </p>
+        <script src="/static/js/plug/analytical.js"></script>
+    </body>
+</html>
+
