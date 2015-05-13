@@ -10,10 +10,53 @@ block content
       .article-title-main
         h1= title
         span= time
+      .article-title-info
+        != "&#xe074; 阅读 "+ visited + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#xe076; 评论 " +page.commentLength
+    .article-guid 
+      .article-guid_in
+        span 开始阅读
     .article-content
       h1= title
       != content
-      //- aaaaa aaaa
+      blockquote.article-declaration
+        p 本文地址 
+          a(href= url)= url
+        p 原创文章，转载请注明出处 
+          a(href="http://www.zhuwenlong.com") 朱文龙的自留地
+
+    .comment
+      form.comment-box(action="/blog/articleComment" method="post")
+        input(type="text" name="name" placeholder="Nickname")
+        input(type="email" name="email" placeholder="Email")
+        input(type="url" name="blog" placeholder="WebSite/Blog")
+        input(type="text" name="vcode" placeholder="Verification code" required="required")
+        textarea(placeholder="Lat's say some thing" name="content")
+        //- for system
+        input(type="hidden" name="blogid" value= id )
+        input(type="hidden" name="url" value= url )
+        input(type="hidden" name="title" value= title )
+        //- img(src="/verification/img")
+        button Post Comment
+    .comment-list
+      - each commList in comment
+        .comment-block
+          if(commList.avatar)
+            img(src= ""+commList.avatar class="comment-block-avatar" onerror="this.src='/img/avatar/nobody.jpg'" )
+          else
+            img(src= "/img/avatar/default" + Math.ceil(Math.random()*5) + ".jpg" class="comment-block-avatar" )
+          .comment-info
+            .comment-info-head
+            if commList.name
+              if commList.blog
+                  a(href=commList.blog class="comment-info-name")= commList.name 
+              else
+                  span(class="comment-info-name")= commList.name 
+            else
+              span(class="comment-info-name") Mofei的好朋友
+            span= new Date(commList.time).getFullYear() + '/' + (new Date(commList.time).getMonth()+1)+ '/' + new Date(commList.time).getDate()
+            span.comment-info-replay  
+              a(href="#" cid= commList._id) m回复
+            .comment-text= commList.content
 
   section.blogContent(style="display:none")
     if content

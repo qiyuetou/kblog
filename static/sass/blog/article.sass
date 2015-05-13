@@ -9,6 +9,13 @@ $width: 1020px
 	src: url('/fonts/icomoon.eot?#iefixiqof2f') format('embedded-opentype'), url('/fonts/icomoon.woff?iqof2f') format('woff'), url('/fonts/icomoon.ttf?iqof2f') format('truetype'), url('/fonts/icomoon.svg?iqof2f#icomoon') format('svg')
 	font-weight: normal
 	font-style: normal
+@font-face 
+	font-family: 'article'
+	src: url('/fonts/article.eot?usc0i')
+	src: url('/fonts/article.eot?#iefixusc0i') format('embedded-opentype'), url('/fonts/article.woff?usc0i') format('woff'), url('/fonts/article.ttf?usc0i') format('truetype'), url('/fonts/article.svg?usc0i#article') format('svg')
+	font-weight: normal
+	font-style: normal
+
 
 .main_section
 	overflow: hidden
@@ -299,6 +306,63 @@ body,html
 	margin-top: -100px
 	left: 90px
 	right: 90px
+.article-title-info
+	position: absolute
+	bottom: 100px
+	width: 100%
+	text-align: center
+	color: #fff
+	font-size: 20px
+	height: 100px
+	line-height: 100px
+	font-family: article
+
+.article-guid,
+	position: absolute
+	bottom: 25%
+	width: 100px
+	height: 100px
+	// border: 1px solid #ccc
+	left: 50%
+	line-height: 100px
+	
+	text-align: center
+	margin-left: -50px
+
+	
+.article-guid_in
+	cursor: pointer
+	color: #9FA0A1
+	background: #3C3F45
+	display: inline-block
+	-webkit-transition: all 400ms ease-out 0s
+	-moz-transition: all 400ms ease-out 0s
+	-o-transition: all 400ms ease-out 0s
+	transition: all 400ms ease-out 0s
+
+	-webkit-transform: rotateY(0deg)
+	-moz-transform: rotateY(0deg)
+	-ms-transform: rotateY(0deg)
+	-o-transform: rotateY(0deg)
+	transform: rotateY(0deg)
+	width: 100px
+	height: 100px
+
+.article-guid span
+	width: 100px
+	height: 100px
+	// border-radius: 100px
+.article-guid:hover .article-guid_in,
+.article-guid:hover .article-guid_in span
+	display: inline-block
+	color: #fff
+	background-color: #DE5E60
+	-webkit-transform: rotateY(180deg)
+	-moz-transform: rotateY(180deg)
+	-ms-transform: rotateY(180deg)
+	-o-transform: rotateY(180deg)
+	transform: rotateY(180deg)
+
 .main_section
 	width: auto
 	height: 100%
@@ -308,7 +372,7 @@ body,html
 		color: #DE5E60
 	font-family: Microsoft Yahei,Hiragino Sans GB,WenQuanYi Micro Hei,sans-serif
 	color: white
-	padding: 40px 10% 100px 10%
+	padding: 40px 10% 0 10%
 	background: #2F3238
 	overflow: hidden
 	h1 
@@ -333,14 +397,14 @@ body,html
 		margin: 0 0 10px 25px
 		line-height: 27px
 	blockquote
-		padding: 10px 15px
-		border-left-style: solid
-		border-left-width: 10px
+		padding: 5px 20px
+		border-left: 2px solid #DE5E60
 		margin: 0 0 20px
+		color: #7F8289
 		p
-			margin-bottom: 15px
-			font-size: 16px
-			font-weight: 300
+			margin-bottom: 5px
+			font-size: 14px
+			font-weight: normal
 			line-height: 25px
 		p:last-child
 			margin-bottom: 0
@@ -382,3 +446,85 @@ body,html
 		border: 0
 		border-bottom: 1px dashed #CFCFCF
 		margin: 30px 0
+.comment
+	padding: 0px 10% 20px 10%
+	background: #2F3238
+.comment-box
+	position: relative
+	input,
+	textarea
+		border: none
+		width: 100%
+		background: #26292E
+		padding: 15px
+		font-size: 16px
+		box-sizing: border-box
+		font-weight: 300
+		font-family: 'Titillium Web', sans-serif
+		outline: 0
+		margin-bottom: 1px
+		color: #fff
+	textarea
+		height: 8em
+	button
+		margin: 0
+		border: none
+		background: #3C3F45
+		color: #23262C 
+		cursor: pointer 
+		display: inline-block 
+		font-size: 18px 
+		font-weight: 500 
+		padding: 16px 80px 
+		text-align: center 
+		vertical-align: middle 
+		width: auto 
+		// margin-top: 30px 
+		-webkit-transition: background 0.1s linear 0s, color 0.1s linear 0s 
+		-moz-transition: background 0.1s linear 0s, color 0.1s linear 0s 
+		-o-transition: background 0.1s linear 0s, color 0.1s linear 0s 
+		transition: background 0.1s linear 0s, color 0.1s linear 0s 
+	button:hover
+		background: #DE5E60
+		color: #fff
+	img
+		cursor: pointer
+		position: absolute
+		top: 155px
+		left: 150px
+.comment-list
+	padding: 20px 10% 100px 10%
+	background: #2F3238
+	border-top: 1px dashed #3C3F45
+.comment-block
+	a
+		color: #DE5E60
+	background: #26292E
+	padding: 10px
+	margin-bottom: 2px
+	color: #7F8289
+	font-weight: 300
+	font-size: 16px
+	line-height: 28px
+	overflow: hidden
+	position: relative
+
+.comment-block-avatar
+	float: left
+	width: 70px
+.comment-info
+	padding-left: 80px
+	min-height: 70px
+.comment-info-name
+	margin-right: 10px
+.comment-info-replay
+	position: absolute
+	right: 10px
+	top: 10px
+	font-family: "icomoon"
+	margin-left: 10px
+	a
+		margin-left: 0
+		text-decoration: none
+
+
