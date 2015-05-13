@@ -33,7 +33,6 @@
   },
   "devDependencies": {
     "grunt": "^0.4.5",
-    "mocha": "^2.2.4",
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-compass": "^1.0.1",
     "grunt-contrib-copy": "^0.5.0",
@@ -43,6 +42,9 @@
     "grunt-contrib-sass": "^0.7.3",
     "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-staticize": "^0.0.4"
+    "grunt-staticize": "^0.0.4",
+    "mocha": "^2.2.4",
+    "should": "^6.0.1",
+    "supertest": "^0.15.0"
   }
 }

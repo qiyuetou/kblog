@@ -8,10 +8,10 @@ var mongo = require('./mongo/mongo');
 var session = require('./session/session');
 var vhost = require('./vhost/index');
 
-var app = koa();
+var app = module.exports = koa();
 
 //logger
-app.use(logger());
+//app.use(logger());
 
 //session
 app.use(session());
@@ -23,11 +23,8 @@ app.use(mongo({
     pwd: '123123'
 }));
 
-
 //vhost
-
 app.use(vhost);
-
 
 //static
 app.use(staticFile('./static', {
@@ -72,4 +69,4 @@ app.get('/lab', requireRoute('lab'));
 app.get('/links', requireRoute('links'));
 
 //listen the port
-app.listen(5123);
+if (!module.parent) app.listen(5123);

@@ -5,7 +5,17 @@ block css
   link(rel="stylesheet" href="/css/blog/highlight/tomorrow-night.css")
 
 block content
-  section.blogContent
+  section.article
+    .article-title
+      .article-title-main
+        h1= title
+        span= time
+    .article-content
+      h1= title
+      != content
+      //- aaaaa aaaa
+
+  section.blogContent(style="display:none")
     if content
       article.blogArticle
         header
