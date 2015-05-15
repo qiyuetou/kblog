@@ -4,58 +4,57 @@ block css
   link(rel="stylesheet" href="/css/blog/blog.css")
 
 block content
-  
-  section.blogContent
-    nav.blogNav
-      ul
-        li.blogNavTitle t 博文分类
-        li 
-          a(href="/blog" class=typeof classid=="undefined"?"active":"")= "全部分类 ("+ total+")"
+
+  section.blog-list
+    .blog-list-nav-box
+      ul.blog-list-nav
+        li(class=typeof classid=="undefined"?"active":"")
+          a(href="/blog")
+            span= "全部分类 ("+ total+")"
         if blogClass
           - each classList in blogClass
-            li
-              a(href="/blog/" + classList.classid class=classList.classid==classid?"active":"")
-                = classList.classname + " ("+ classList.classcount + ")"
+            li(class=classList.classid==classid?"active":"")
+              a(href="/blog/" + classList.classid )
+                span= classList.classname + " ("+ classList.classcount + ")"
+        span.blog-list-nav-more &#xe120;
+
+    .blog-list-main
+      .blog-list-nav-more-list
           
-        
-    section.blogList
       if blogList
         - each blog in blogList
           article
             a(href='/blog/' + blog._id class="blogListItem")
               header
-                time
-                  span.blogyear= new Date(blog.pubtime).getFullYear()
-                  span.blogmonth= (new Date(blog.pubtime).getMonth()+1)+'月'
-                  span.blogday= new Date(blog.pubtime).getDate()
                 h2= blog.title
-              div.blogListContent= blog.content.slice(0,200).replace(/[\#\=\-\*\n\r]/g,'') + ' ...'
-              footer 
-                span.blogVisited= 'r ' + blog.visited
-                span.blogComment= 'c ' + blog.comment
-      else
-        article.noarticle
-          p 该分类木有文章 :( 
-          p 或者。。你来到了一个别人从未到达的地方
-
-      section.blogpages
-
+                .blog-list-info
+                  time
+                    span.blog-list-time-icon &#xe014; 
+                    span= new Date(blog.pubtime).getFullYear() + '/'
+                    span= (new Date(blog.pubtime).getMonth()+1)+'/'
+                    span= new Date(blog.pubtime).getDate()
+                  span.blog-list-visited
+                    != ' &#xe074; ' + blog.visited
+                  span.blog-list-comment
+                    != ' &#xe076; ' + blog.comment
+              div.blog-list-intro= blog.content.slice(0,200).replace(/[\#\=\-\*\n\r]/g,'') + ' ...'
+      section.blog-list-page
         if(page.current>3)
           a(href='/blog/'+ (classid?classid:0) + '/1' )= 1
           if(page.current!=4)
             a(class="blogpagesellip") ...
-
         - for(var x=(page.current-2<1?1:page.current-2);x<page.current;x++)
           a(href='/blog/'+ (classid?classid:0) + '/'+x )= x
-        
-        a(class="blogpagescurrent")= page.current
-
+        a(class="active")= page.current
         - for(var x=page.current+1;x<=(page.total-page.current>2?page.current+2:page.total);x++)
           a(href='/blog/'+ (classid?classid:0) + '/'+x )= x
-
         if(page.total-page.current>2)
           if(page.total-page.current!=3)
             a(class="blogpagesellip") ...
           a(href='/blog/'+ (classid?classid:0) + '/'+page.total)= page.total
+        span= " 共"+ page.total +"页"
 
 block js
+  script(src="/js/jquery-2.1.1.min.js")
+  script(src="/js/jquery.cookie.js")
+  script(src="/js/blog/blog.js")

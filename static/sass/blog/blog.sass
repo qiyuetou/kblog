@@ -5,16 +5,16 @@ $width: 1020px
 
 
 @font-face
-	font-family: 'icomoon'
-	src: url('/fonts/icomoon.eot?iqof2f')
-	src: url('/fonts/icomoon.eot?#iefixiqof2f') format('embedded-opentype'), url('/fonts/icomoon.woff?iqof2f') format('woff'), url('/fonts/icomoon.ttf?iqof2f') format('truetype'), url('/fonts/icomoon.svg?iqof2f#icomoon') format('svg')
+	font-family: 'blog'
+	src: url('/fonts/blog.eot?iqof2f')
+	src: url('/fonts/blog.eot?#iefixiqof2f') format('embedded-opentype'), url('/fonts/blog.woff?iqof2f') format('woff'), url('/fonts/blog.ttf?iqof2f') format('truetype'), url('/fonts/blog.svg?iqof2f#blog') format('svg')
 	font-weight: normal
 	font-style: normal
 
 
 .main_section
 	overflow: hidden
-	width: $width
+	width: 100%
 	margin: 0 auto
 
 .blogContent
@@ -24,6 +24,7 @@ $width: 1020px
 	overflow: hidden
 	margin-bottom: 5em
 	margin-top: 2.5em
+
 
 .blogNav
 	float: left
@@ -147,7 +148,6 @@ $width: 1020px
 				left: 0
 				width: auto
 				font-size: 18px
-				margin-right: 8px
 	.blogList 
 		h2
 			width: 100%
@@ -177,3 +177,189 @@ $width: 1020px
 	a.blogpagescurrent
 		background: rgba(0,0,0,0.3)
 		color: #999
+
+//----------
+
+.blog-list
+	color: white
+	margin: 50px 10% 65px 10%
+	max-width: 1200px
+.blog-list-nav-box
+	height: 41px
+	overflow: hidden
+
+.blog-list-nav-more-list
+	position: absolute
+	display: none
+	top: 1px
+	// left: 10px
+	z-index: 1000
+	ul
+		margin: 0
+		padding: 0
+		list-style: none
+		li
+			background: #3C3F45
+			margin-bottom: 1px
+			padding: 10px
+			&:hover,
+			&.active
+				background-color: #DE5E60
+				a
+					color: white
+
+		a
+			text-decoration: none
+			// padding: 10px
+			display: inline-block
+			text-align: right
+			width: 100%
+			color: #23262C
+.blog-list-nav
+	.blog-list-nav-more
+		cursor: pointer
+		position: absolute
+		display: none
+		top: 0
+		height: 41px
+		// width: 41px
+		background: red
+		background: #3C3F45
+		line-height: 41px
+		font-family: 'blog'
+		text-align: center
+		color: #23262C
+		padding: 0 10px
+		&.active
+			background-color: #DE5E60
+			a,&
+				color: white
+				text-decoration: none
+	margin: 0
+	padding: 0
+	list-style: none
+	overflow: hidden
+	position: relative
+	li
+		float: left
+		margin-right: 10px
+		a
+			display: inline-block
+			background: #3C3F45
+			color: #23262C
+			text-decoration: none
+			-webkit-transition: all 400ms ease-out 0s
+			-moz-transition: all 400ms ease-out 0s
+			-o-transition: all 400ms ease-out 0s
+			transition: all 400ms ease-out 0s
+
+			-webkit-transform: rotateY(0deg)
+			-moz-transform: rotateY(0deg)
+			-ms-transform: rotateY(0deg)
+			-o-transform: rotateY(0deg)
+			transform: rotateY(0deg)
+			span
+				display: inline-block
+				padding: 10px 20px	
+	li:hover,li.active
+		a
+			-webkit-transform: rotateY(180deg)
+			-moz-transform: rotateY(180deg)
+			-ms-transform: rotateY(180deg)
+			-o-transform: rotateY(180deg)
+			transform: rotateY(180deg)
+			background-color: #DE5E60
+			color: white
+			-webkit-perspective: 1px
+			perspective: 1px
+		span
+			// background-color: white
+			-webkit-transform: rotateY(180deg)
+			-moz-transform: rotateY(180deg)
+			-ms-transform: rotateY(180deg)
+			-o-transform: rotateY(180deg)
+			transform: rotateY(180deg)
+
+
+
+
+.blog-list-main
+	background: #2F3238
+	position: relative
+	article
+		background: #26292E
+		padding: 20px
+		a
+			font-size: 14px
+			display: block
+			text-decoration: none
+			
+			margin-bottom: 1px 
+			color: #7F8289
+			h2
+				margin: 0
+				padding-bottom: 10px
+				border-bottom: 1px dashed #2F3238
+				color: #fff
+				font-family: 'Titillium Web', sans-serif
+				font-weight: normal
+			.blog-list-visited,
+			.blog-list-comment
+				font-family: "blog"
+				margin-left: 10px
+			.blog-list-time-icon 
+				font-family: "blog"
+		.blog-list-info
+			padding: 10px 0 
+		.blog-list-intro
+			padding: 0px 10px
+			line-height: 1.6em
+			border-left: 2px solid #DE5E60
+	.blog-list-page
+		text-align: right
+		padding-right: 20px
+		padding: 10px
+		a
+			font-size: 16px
+			display: inline-block
+			color: #7F8289
+			padding: 2px 5px
+			text-decoration: none
+			margin-left: 10px
+		a.active
+			color: #fff
+			background: #DE5E60
+		span
+			color: #65676C
+@media (max-width:560px)
+	.blog-list
+		margin: 10px
+	.blog-list-nav-box
+		height: auto
+	.blog-list-nav
+		background: #26292E
+		height: 40px
+		-webkit-transition: all 400ms ease-out
+		-moz-transition: all 400ms ease-out
+		-o-transition: all 400ms ease-out
+		transition: all 400ms ease-out
+	.blog-list-nav li 
+		height: 41px
+		width: 100%
+		margin-bottom: 1px
+		a
+			height: 41px
+			width: 100%
+	.blog-list-main article
+		h2
+			font-size: 16px
+		.blog-list-info
+			// padding: 5px 0
+			font-size: 12px
+		.blog-list-intro
+			font-size: 12px
+			word-break: break-all
+		.blog-list-page
+			a
+				font-size: 12px
+		
