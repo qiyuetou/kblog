@@ -85,7 +85,7 @@
         $.cookie('article-guid', ++articleGuid, {
             expires: 365
         });
-        $('.article').animate({
+        $('body').animate({
             scrollTop: document.body.clientHeight
         });
     })

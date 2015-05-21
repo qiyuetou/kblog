@@ -4,7 +4,7 @@ var ObjectID = require('mongodb').ObjectID;
 var marked = require('marked');
 
 function* blogList() {
-
+    // this.body ='404'
     var self = this;
 
     var Tclass = this.params.Tclass;

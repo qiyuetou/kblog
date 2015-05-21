@@ -8,6 +8,11 @@ var renderer = new THREE.WebGLRenderer({
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 
+html2canvas(document.body, {
+    onrendered: function(canvas) {
+        document.body.appendChild(canvas);
+    }
+});
 
 var camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 1, 200000);
 camera.position.z = 20000;
@@ -278,10 +283,10 @@ function onClick(event) {
         step: 10
     });
 
-    setTimeout(function(){
+    setTimeout(function() {
         levelTwo.add(earth.clone())
-    },1000)
-    
+    }, 1000)
+
     //small the map
 };
 /*****/
