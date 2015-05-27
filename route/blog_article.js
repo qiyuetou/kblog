@@ -27,7 +27,7 @@ function* blogList() {
                 db.collection('blog').find({
                     '_id': id
                 }).toArray(function(err, res) {
-                    // console.log('!!!!!', id, res);
+
                     if (res.length < 1) {
                         callback(null, model);
                         return false;
@@ -39,7 +39,7 @@ function* blogList() {
                     date += res[0].pubtime.getHours() + ':';
                     date += res[0].pubtime.getMinutes() + ':';
                     date += res[0].pubtime.getSeconds();
-                    // console.log(res[0])
+
                     model = res[0];
                     //page
                     model.page = {
@@ -58,6 +58,8 @@ function* blogList() {
                         }
                     });
                     model.content = marked(res[0].content);
+
+                    model.links = res[0]['links'];
 
                     //update visited
                     db.collection('blog').update({

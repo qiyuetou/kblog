@@ -113,10 +113,12 @@ function addCube(index, radius, color) {
         // console.log(pois[i][1])
         cube.position.x = (pois[i][0] - dxs - 150000 / 2) / 1000;
         cube.position.y = (pois[i][1] - dys + 150000 / 2) / 1000;
-        cube.position.z = (height / 2)+1;
+        cube.position.z = (height / 2)+0.1;
         scene.add(cube);
     }
 }
+
+
 
 // 13439254,3716124
 // 13584150,3572252
@@ -131,7 +133,7 @@ var material = new THREE.MeshBasicMaterial({
     map: texture
 });
 var plane = new THREE.Mesh(geometry, material);
-plane.position.z = -1;
+plane.position.z = -0.1;
 levelOne.add(plane);
 
 
@@ -143,7 +145,7 @@ var backgroundLight = new THREE.HemisphereLight('skyblue', 0x000000, 5);
 backgroundLight.position.x = 1000;
 backgroundLight.position.y = 1000;
 backgroundLight.position.z = 1000;
-console.log(backgroundLight.position)
+// console.log(backgroundLight.position)
 scene.add(backgroundLight);
 /* end light */
 
