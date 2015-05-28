@@ -1,10 +1,11 @@
-import pymongo
+﻿import pymongo
 import re
 import jieba.analyse
 import jieba
 import math
+import os
 from bson.objectid import ObjectId
-
+path =  os.path.dirname(os.path.abspath(__file__))
 client = pymongo.MongoClient('mongodb://localhost:27017');
 
 
@@ -45,7 +46,7 @@ for i in oneDate:
             fileWords[blogId][j]=0
     fileNum=fileNum+1
 
-file = open('./idf.txt.big','w');
+file = open(path+'/idf.txt.big','w');
 for i in wordsMap:
     iTime=0
     for files in fileWords:
@@ -57,8 +58,8 @@ file.close()
 
 fileWords={}
 for i in cleanWords:
-    jieba.analyse.set_stop_words('./stopwords')
-    jieba.analyse.set_idf_path('./idf.txt.big')
+    jieba.analyse.set_stop_words(path+'/stopwords')
+    jieba.analyse.set_idf_path(path+'/idf.txt.big')
     words = jieba.analyse.extract_tags(cleanWords[i], topK=20)
     fileWords[str(i)]=words
 
@@ -90,3 +91,4 @@ for i in fileWords:
     articleList=[];
 
 #print(similar,'\n\n\n\n')
+print('success');
