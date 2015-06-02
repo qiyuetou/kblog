@@ -1,0 +1,35 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title blogpub
+    link(href='/css/plug/bootstrap.min.css', type='text/css', rel='stylesheet')
+  body
+    div
+      p
+        h1.center blog pub
+      p
+      form(action='/admin/blogsave', method='post')
+        input(type='hidden', value='{{blogid}}', name='blogid')
+        div
+          label.control-label.span1 Title:
+          input.span10(type='text', name='blogtitle', value=blogT)
+        div
+          label.control-label.span1 Class:
+          select(name='blogclass')
+            -each bclass in blogClassHtml
+              option(value= bclass['classid'] )= bclass['classname']
+        div(style='overflow:hidden;')
+          div(style=' overflow:hidden; margin:0 20px;')
+            textarea#myEditor.span10(name='blogtext', style='height:500px; float:left; width:49%;')= blogC
+            #text-pre.span10(style='width:48%;')  
+        div(style='overflow:hidden;')
+          textarea.span10(name='introduce', style=' float:left; width:47%; margin-left:20px;')  
+        div
+          button.btn(type='submit', style='margin-left:20px;') 发布
+    script(src='/js/jquery-2.1.1.min.js')
+    script(src='/js/plug/markdown.js')
+    script.
+      $('#myEditor').on('keyup',function(){
+        $('#text-pre').html(markdown.toHTML($(this).val()));
+      });

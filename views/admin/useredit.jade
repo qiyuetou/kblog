@@ -1,0 +1,38 @@
+doctype html
+html(xmlns='http://www.w3.org/1999/xhtml', lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    title 简易管理后台
+    meta(name='author', content='Mofei')
+    link(href='/css/plug/bootstrap.min.css', type='text/css', rel='stylesheet')
+  body
+    div
+      a.badge.badge-info(href='/admin') 返回功能选择
+    p
+      table.table.table-striped
+        tbody
+          tr
+            th ID
+            th username
+            th password
+            th 修改
+            th 删除
+          form(action='/admin/useredit', method='post')
+            tr
+              td
+                input(name='_id')
+              td
+                input(name='username')
+              td
+                input(name='password')
+              td(colspan='2')
+                input(type='submit', value='确定')
+          -each user in data
+            tr
+              td= user._id
+              td= user.username
+              td= user.password
+              td
+                a(href='#') 修改
+              td
+                a(href='#') 删除

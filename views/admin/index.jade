@@ -1,0 +1,40 @@
+doctype html(lang='en')
+head
+    meta(charset='utf-8')
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    title &#x7B80;&#x6613;&#x7BA1;&#x7406;&#x540E;&#x53F0;
+    meta(name='author', content='Mofei')
+    link(href='/css/plug/bootstrap.min.css', type='text/css', rel='stylesheet')
+body
+    .row.container
+      p &nbsp;
+      .alert.alert-info &#x6B22;&#x8FCE; 
+        strong= username +' '+ userid
+      ul.nav.nav-tabs.nav-stacked
+        li
+          a(href='/admin/blog')
+            i.icon-align-justify  
+            |  &#x535A;&#x6587;&#x7BA1;&#x7406;
+        li
+          a(href='/admin/blogclass')
+            i.icon-check  
+            |  &#x535A;&#x5BA2;&#x5206;&#x7C7B;&#x7BA1;&#x7406;
+        li
+          a(href='/admin/blogcomment')
+            i.icon-check  
+            |  &#x535A;&#x5BA2;&#x8BC4;&#x8BBA;&#x7BA1;&#x7406;
+    
+        li
+          a(href='/admin/backup')
+            i.icon-download  
+            |  &#x6570;&#x636E;&#x5E93;&#x5907;&#x4EFD;
+    
+        li
+          a(href='/admin/user')
+            i.icon-user  
+            |  &#x7528;&#x6237;&#x7BA1;&#x7406;
+    
+        li
+          a(href='https://api.weibo.com/oauth2/authorize?client_id=3314722704&response_type=code&redirect_uri=http://www.zhuwenlong.com/z_admin/login/weibo')
+            i.icon-share  
+            |  &#x5FAE;&#x535A;&#x6388;&#x6743;

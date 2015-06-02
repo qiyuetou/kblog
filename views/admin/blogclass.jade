@@ -1,0 +1,75 @@
+doctype html
+html(xmlns='http://www.w3.org/1999/xhtml', lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    title 博客分类管理
+    meta(name='author', content='Ｍofei')
+    link(href='/css/plug/bootstrap.min.css', type='text/css', rel='stylesheet')
+  body
+    .row.container
+      p
+        a.badge.badge-info(href='/admin') 返回功能选择
+      p
+        a.badge.badge-info.OP_newClass(href='#') 新建分类
+      table.table.table-striped
+        tbody
+          tr
+            th classname
+            th classid
+            th classcount
+            th _id
+            th 操作
+          form(action='/admin/blogclassadd', method='post')
+            tr.success(style='display:none;')
+              td
+                input(type='text', name='classname')
+              td
+                input(type='number', name='classid', style='width:60px;')
+              td
+                input(type='text', name='classcount', style='width:60px;', disabled='disabled')
+              td
+                input(type='text', name='_id', disabled='disabled')
+              td
+                button(type='submit') 新建分类
+              -each l in list
+                tr
+                  td= l.classname
+                  td= l.classid
+                  td= l.classcount
+                  td= l._id
+                  td
+                    a.OP_edit(href='#') 编辑
+                    a.OP_delete(href='/admin/blogclassremove?_id='+l._id) 删除
+    script(src='/js/jquery-2.1.1.min.js')
+    script.
+      var tar = $('tr:eq(1)');
+      var tarInp=tar.find('input');
+      $('.OP_newClass').on('click', function() {
+      tarInp.val('');
+      tarInp.removeAttr('disabled');
+      tar.find('input:eq(2),input:eq(3)').attr('disabled','disabled');
+      tar.find('button').html('new Class');
+      tar.show();
+      });
+      $('.OP_edit').on('click',function(){
+      tarInp.val('');
+      tarInp.removeAttr('disabled');
+      tar.find('button').html('edit Class');
+      tar.show();
+      var that=$(this);
+      var par=that.parents('tr');
+      var classname=par.find('td:eq(0)').html();
+      var classid=par.find('td:eq(1)').html();
+      var classcount=par.find('td:eq(2)').html();
+      var _id=par.find('td:eq(3)').html();
+      tar.find('input:eq(0)').val(classname);
+      tar.find('input:eq(1)').val(classid);
+      tar.find('input:eq(2)').val(classcount);
+      tar.find('input:eq(3)').val(_id);
+      return false;
+      });
+      $('.OP_delete').on('click',function(){
+      if(!confirm('确认删除？')){
+      return false;
+      }
+      });

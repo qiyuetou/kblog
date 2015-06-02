@@ -1,0 +1,28 @@
+doctype html(lang='en')
+head
+    meta(charset='utf-8')
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    title &#x7B80;&#x6613;&#x7BA1;&#x7406;&#x540E;&#x53F0;
+    meta(name='author', content='Mofei')
+    link(href='/css/plug/bootstrap.min.css', type='text/css', rel='stylesheet')
+    link(href='/css/admin/editor.css', type='text/css', rel='stylesheet')
+body
+    .editor
+        textarea.write #1231
+        .preview 1
+
+    script(src="/js/jquery-2.1.1.min.js")
+    script(src="/js/plug/markdown.js")
+    script.
+      function Editor(input, preview) {
+        this.update = function () {
+          preview.innerHTML = markdown.toHTML(input.value);
+        };
+        input.editor = this;
+        this.update();
+      }
+      //- var $ = function (id) { return document.getElementById(id); };
+      $(".write").on('keyup',function(){
+        new Editor($(".write")[0], $(".preview ")[0]);  
+      })
+      

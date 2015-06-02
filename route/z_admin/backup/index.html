@@ -1,29 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-"http://www.w3.org/TR/html4/strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>简易管理后台</title>
-        <meta name="author" content="Mofei" />
-        <link href="/static/plug/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-    </head>
-    <body>
-        <div class="row container">
-            <p>
-                <a href="/z_admin" class="badge badge-info">返回功能选择</a>
-                <a href="/z_admin/backup/backupdo" class="badge badge-info">备份数据</a>
-            </p>
-            <p>
-                已备份列表
-            </p>
-            <table class="table table-striped">
-                {{#each list}}
-                <tr>
-                    <td>{{index}}</td><td>{{name}}</td><td>{{time}}</td><td>恢复</td><td>删除</td>
-                </tr>
-                {{/each}}
-            </table>
-        </div>
-    </body>
-</html>
+doctype html
+html(xmlns='http://www.w3.org/1999/xhtml', lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    title 简易管理后台
+    meta(name='author', content='Mofei')
+    link(href='/static/plug/bootstrap/css/bootstrap.min.css', type='text/css', rel='stylesheet')
+  body
+    .row.container
+      p
+        a.badge.badge-info(href='/admin') 返回功能选择
+        a.badge.badge-info(href='/admin/blogbackupdo') 备份数据
+      p
+        | 已备份列表
+      table.table.table-striped
+        | {{#each list}}
+        tr
+          td {{index}}
+          td {{name}}
+          td {{time}}
+          td 恢复
+          td 删除

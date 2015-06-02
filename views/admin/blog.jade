@@ -1,0 +1,43 @@
+doctype html
+html(xmlns='http://www.w3.org/1999/xhtml', lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    title 博客管理
+    meta(name='author', content='Ｍofei')
+    link(href='/css/plug/bootstrap.min.css', type='text/css', rel='stylesheet')
+  body
+    .row.container
+      ul.nav.nav-pills
+        li
+          a(href='/admin/blog')
+            i.icon-align-justify
+            |  博文管理
+        li
+          a(href='/admin/blogclass')
+            i.icon-check
+            |  博客分类管理
+      p
+        a.badge.badge-info(href='/admin/blogpub') 发布新博客
+      table.table.table-striped
+        tr
+          th ID
+          th Title
+          th Visited
+          th Comment
+          th Time
+          th Action
+          th ClassID
+        - each blogList in bloglist
+          tr
+            td= blogList[0]
+            td= blogList[1]
+            td= blogList[2]
+            td= blogList[3]
+            td= blogList[4]
+            td
+              a(href="/admin/blogpub?id="+blogList[0]) 编辑
+              br
+              a(href="/admin/blogdel?id="+blogList[0]) 删除
+            td= blogList[5]
+      p
+        a.badge.badge-info(href='/admin/blogpub') 发布新博客

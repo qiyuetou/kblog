@@ -1,0 +1,22 @@
+doctype html
+html(xmlns='http://www.w3.org/1999/xhtml', lang='en')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    title 简易管理后台
+    meta(name='author', content='Mofei')
+    link(href='/css/plug/bootstrap.min.css', type='text/css', rel='stylesheet')
+  body
+    .row.container
+      p
+        a.badge.badge-info(href='/admin') 返回功能选择
+        a.badge.badge-info(href='/admin/blogbackupdo') 备份数据
+      p
+        | 已备份列表
+      table.table.table-striped
+        - each l in list
+          tr
+            td= l.index
+            td= l.name
+            td= l.time
+            td 恢复
+            td 删除

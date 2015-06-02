@@ -8,11 +8,11 @@ var renderer = new THREE.WebGLRenderer({
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 
-html2canvas(document.body, {
-    onrendered: function(canvas) {
-        document.body.appendChild(canvas);
-    }
-});
+// html2canvas(document.body, {
+//     onrendered: function(canvas) {
+//         document.body.appendChild(canvas);
+//     }
+// });
 
 var camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 1, 200000);
 camera.position.z = 20000;
@@ -242,7 +242,13 @@ window.addEventListener('click', onClick, false);
 
 var hoverCountry = {};
 
+var xxxxx = false;
+
 function onClick(event) {
+    if (xxxxx) {
+        return false
+    }
+    xxxxx = true
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
@@ -285,7 +291,7 @@ function onClick(event) {
 
     setTimeout(function() {
         levelTwo.add(earth.clone())
-    }, 1000)
+    }, 800)
 
     //small the map
 };
@@ -302,7 +308,7 @@ geometry.vertices.push(
 );
 var line = new THREE.Line(geometry, material);
 
-scene.add(line);
+// scene.add(line);
 
 //
 var animate = {

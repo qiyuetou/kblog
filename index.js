@@ -1,8 +1,8 @@
 //pm2 start koa.js --node-args="--harmony";
 var koa = require('koa');
 var logger = require('koa-logger');
-var route = require('koa-route');
-var router = require('koa-router');
+// var route = require('koa-route');
+var router = require('koa-router')();
 var staticFile = require('koa-static');
 var mongo = require('./mongo/mongo');
 var session = require('./session/session');
@@ -36,37 +36,82 @@ function requireRoute(router) {
     return require('./route/' + router + '.js');
 }
 
-app.use(router(app));
+// app.use(router(app));
 
 //index
-app.get('/', requireRoute('index'));
+router.get('/', requireRoute('index'));
 
 //blog
-app.get('/blog', requireRoute('blog'));
-app.get('/blog/:Tclass/:Tpage', requireRoute('blog'));
-app.get('/blog/:Tclass', requireRoute('blog'));
-app.post('/blog/articleComment', requireRoute('blog_comment'));
+router.get('/blog', requireRoute('blog'));
+router.get('/blog/:Tclass/:Tpage', requireRoute('blog'));
+router.get('/blog/:Tclass', requireRoute('blog'));
+router.post('/blog/articleComment', requireRoute('blog_comment'));
 
-//verification
-app.get('/verification/img', requireRoute('/verification/img'));
+// //verification
+router.get('/verification/img', requireRoute('/verification/img'));
 
 //about
-app.get('/about', function*() {
+router.get('/about', function*() {
     this.status = 301;
     this.redirect('/#about');
 });
 
 //rss
-app.get('/rss', requireRoute('/rss'))
+router.get('/rss', requireRoute('/rss'))
 
 //api
-app.post('/api/sendemail', requireRoute('/api/sendemail'));
+router.post('/api/sendemail', requireRoute('/api/sendemail'));
+
+// //lab
+router.get('/lab', requireRoute('lab'));
 
 //lab
-app.get('/lab', requireRoute('lab'));
+router.get('/links', requireRoute('links'));
 
-//lab
-app.get('/links', requireRoute('links'));
+
+//admin
+router.use(function*(next) {
+    var url = this.request.url;
+    if (/^\/admin/.test(url)) {
+
+        if (/^\/admin\/login/.test(url)) {
+            yield next
+        } else {
+            var power = this.session.get('power')
+            if (power == 'logined') {
+                yield next
+            } else {
+                this.status = 301;
+                this.redirect('/admin/login?check=wrong');
+            }
+        }
+    } else {
+        yield next
+    }
+
+})
+router.get('/admin/', requireRoute('/admin/index'))
+router.get('/admin/blog', requireRoute('/admin/blog'))
+router.get('/admin/blogpub', requireRoute('/admin/blogpub'))
+router.post('/admin/blogsave', requireRoute('/admin/blogsave'))
+router.get('/admin/blogdel', requireRoute('/admin/blogdel'))
+router.get('/admin/blogclass', requireRoute('/admin/blogclass'))
+router.get('/admin/blogclassremove', requireRoute('/admin/blogclassremove'))
+router.post('/admin/blogclassadd', requireRoute('/admin/blogclassadd'))
+router.get('/admin/blogbackup', requireRoute('/admin/blogbackup'))
+router.get('/admin/blogbackupdo', requireRoute('/admin/blogbackupdo'))
+router.get('/admin/user', requireRoute('/admin/user'))
+router.post('/admin/useredit', requireRoute('/admin/useredit'))
+router.get('/admin/login', requireRoute('/admin/login'))
+router.post('/admin/logincheck', requireRoute('/admin/logincheck'))
+
+//
+// app.get('/admin/editor', requireRoute('/admin/editor'))
+
+app
+    .use(router.routes())
+    .use(router.allowedMethods());
 
 //listen the port
 if (!module.parent) app.listen(5123);
+// app.listen(5123)
