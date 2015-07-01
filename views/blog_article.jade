@@ -12,7 +12,7 @@ block content
         span= time
       .article-title-info
         != "&#xe074; 阅读 "+ visited + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#xe076; 评论 " +page.commentLength
-    .article-guid 
+    .article-guid
       .article-guid_in
         span 滚屏阅读
     .article-content
@@ -26,11 +26,11 @@ block content
             li
               a(href="/blog/"+link[0])= link[1].title
       blockquote.article-declaration
-        p 本文地址 
+        p 本文地址
           a(href= url)= url
-        p 原创文章，转载请注明出处 
+        p 原创文章，转载请注明出处
           a(href="http://www.zhuwenlong.com") 朱文龙的自留地
-        
+
     .comment
       form.comment-box(action="/blog/articleComment" method="post")
         input(type="text" name="name" placeholder="Nickname")
@@ -56,17 +56,16 @@ block content
             .comment-info-head
             if commList.name
               if commList.blog
-                  a(href=commList.blog class="comment-info-name")= commList.name 
+                  a(href=commList.blog class="comment-info-name")= commList.name
               else
-                  span(class="comment-info-name")= commList.name 
+                  span(class="comment-info-name")= commList.name
             else
               span(class="comment-info-name") Mofei的好朋友
             span= new Date(commList.time).getFullYear() + '/' + (new Date(commList.time).getMonth()+1)+ '/' + new Date(commList.time).getDate()
-            span.comment-info-replay  
+            span.comment-info-replay
               a(href="#" cid= commList._id) m回复
             .comment-text= commList.content
 block js
-  script(src="/js/jquery-2.1.1.min.js")
   script(src="/js/jquery.cookie.js")
   script(src="/js/blog/article.js")
   script(src="/js/highlightjs/hightlight.js")

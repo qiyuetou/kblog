@@ -20,7 +20,7 @@ block content
 
     .blog-list-main
       .blog-list-nav-more-list
-          
+
       if blogList
         - each blog in blogList
           article
@@ -29,7 +29,7 @@ block content
                 h2= blog.title
                 .blog-list-info
                   time
-                    span.blog-list-time-icon &#xe014; 
+                    span.blog-list-time-icon &#xe014;
                     span= new Date(blog.pubtime).getFullYear() + '/'
                     span= (new Date(blog.pubtime).getMonth()+1)+'/'
                     span= new Date(blog.pubtime).getDate()
@@ -55,6 +55,5 @@ block content
         span= " 共"+ page.total +"页"
 
 block js
-  script(src="/js/jquery-2.1.1.min.js")
   script(src="/js/jquery.cookie.js")
   script(src="/js/blog/blog.js")
