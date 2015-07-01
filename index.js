@@ -47,7 +47,7 @@ router.get('/blog/:Tclass/:Tpage', requireRoute('blog'));
 router.get('/blog/:Tclass', requireRoute('blog'));
 router.post('/blog/articleComment', requireRoute('blog_comment'));
 
-// //verification
+//verification
 router.get('/verification/img', requireRoute('/verification/img'));
 
 //about
@@ -105,7 +105,6 @@ router.post('/admin/useredit', requireRoute('/admin/useredit'))
 router.get('/admin/login', requireRoute('/admin/login'))
 router.post('/admin/logincheck', requireRoute('/admin/logincheck'))
 
-//
 // app.get('/admin/editor', requireRoute('/admin/editor'))
 
 app
