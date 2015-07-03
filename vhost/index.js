@@ -6,11 +6,12 @@ var vhosts = {
     'zhuwenlong.com': {},
     //for test
     'zwl.com': {},
-    'www.zwl.com': {}
+    'www.zwl.com': {},
+    'static.zwl.com': {},
 }
 
-Object.keys(ifaces).forEach(function(ifname) {
-    ifaces[ifname].forEach(function(iface) {
+Object.keys(ifaces).forEach(function (ifname) {
+    ifaces[ifname].forEach(function (iface) {
         if ('IPv4' == iface.family) {
             vhosts[iface.address] = {};
         }

@@ -1,7 +1,6 @@
 //pm2 start koa.js --node-args="--harmony";
 var koa = require('koa');
 var logger = require('koa-logger');
-// var route = require('koa-route');
 var router = require('koa-router')();
 var staticFile = require('koa-static');
 var mongo = require('./mongo/mongo');
@@ -11,7 +10,7 @@ var vhost = require('./vhost/index');
 var app = module.exports = koa();
 
 //logger
-//app.use(logger());
+app.use(logger());
 
 //session
 app.use(session());
@@ -36,8 +35,6 @@ function requireRoute(router) {
     return require('./route/' + router + '.js');
 }
 
-// app.use(router(app));
-
 //index
 router.get('/', requireRoute('index'));
 
@@ -51,7 +48,7 @@ router.post('/blog/articleComment', requireRoute('blog_comment'));
 router.get('/verification/img', requireRoute('/verification/img'));
 
 //about
-router.get('/about', function*() {
+router.get('/about', function* () {
     this.status = 301;
     this.redirect('/#about');
 });
@@ -68,12 +65,10 @@ router.get('/lab', requireRoute('lab'));
 //lab
 router.get('/links', requireRoute('links'));
 
-
 //admin
-router.use(function*(next) {
+router.use(function* (next) {
     var url = this.request.url;
     if (/^\/admin/.test(url)) {
-
         if (/^\/admin\/login/.test(url)) {
             yield next
         } else {
@@ -82,7 +77,7 @@ router.use(function*(next) {
                 yield next
             } else {
                 this.status = 301;
-                this.redirect('/admin/login?check=wrong');
+                this.redirect('/admin/login?check=wrong1');
             }
         }
     } else {
@@ -91,6 +86,7 @@ router.use(function*(next) {
 
 })
 router.get('/admin/', requireRoute('/admin/index'))
+router.get('/admin/upload', requireRoute('/admin/upload'))
 router.get('/admin/blog', requireRoute('/admin/blog'))
 router.get('/admin/blogpub', requireRoute('/admin/blogpub'))
 router.post('/admin/blogsave', requireRoute('/admin/blogsave'))
@@ -105,7 +101,8 @@ router.post('/admin/useredit', requireRoute('/admin/useredit'))
 router.get('/admin/login', requireRoute('/admin/login'))
 router.post('/admin/logincheck', requireRoute('/admin/logincheck'))
 
-// app.get('/admin/editor', requireRoute('/admin/editor'))
+// pings
+router.post('/plugs/upload', requireRoute('/plugs/upload'));
 
 app
     .use(router.routes())

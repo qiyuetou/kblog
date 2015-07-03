@@ -4,6 +4,7 @@ html(lang='en')
     meta(charset='utf-8')
     title blogpub
     link(href='/css/plug/bootstrap.min.css', type='text/css', rel='stylesheet')
+    link(href='/css/admin/editor.css', type="text/css" rel="stylesheet")
   body
     div
       p
@@ -20,11 +21,11 @@ html(lang='en')
             -each bclass in blogClassHtml
               option(value= bclass['classid'] )= bclass['classname']
         div(style='overflow:hidden;')
-          div(style=' overflow:hidden; margin:0 20px;')
-            textarea#myEditor.span10(name='blogtext', style='height:500px; float:left; width:49%;')= blogC
-            #text-pre.span10(style='width:48%;')  
+          .content-box
+            textarea#myEditor.myEditor(name='blogtext')= blogC
+            #text-pre.span10(style='width:48%;')
         div(style='overflow:hidden;')
-          textarea.span10(name='introduce', style=' float:left; width:47%; margin-left:20px;')  
+          textarea.weibo-area(name='introduce')
         div
           button.btn(type='submit', style='margin-left:20px;') 发布
     script(src='/js/jquery-2.1.1.min.js')
