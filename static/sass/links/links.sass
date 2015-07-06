@@ -1,7 +1,7 @@
 @import 'normalize.sass'
 @import "../common.sass"
 
-.links-content 
+.links-content
 	position: absolute
 	top: 50px
 	width: 1000px
@@ -41,3 +41,12 @@
 		color: #ccc
 		font-size: 14px
 		text-decoration: none
+
+@media (max-width: 560px)
+	.links-list,.links-content
+		text-align: center
+		left: 0
+		margin-left: 0
+		width: 100%
+	.links-block
+		float: none
