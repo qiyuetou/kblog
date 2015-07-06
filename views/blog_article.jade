@@ -1,8 +1,8 @@
 extend layout
 
 block css
-  link(rel="stylesheet" href="/css/blog/article.css")
-  link(rel="stylesheet" href="/css/blog/highlight/tomorrow-night.css")
+  link(rel="stylesheet" href=host+"/css/blog/article.css")
+  link(rel="stylesheet" href=host+"/css/blog/highlight/tomorrow-night.css")
 
 block content
   section.article
@@ -66,8 +66,8 @@ block content
               a(href="#" cid= commList._id) m回复
             .comment-text= commList.content
 block js
-  script(src="/js/jquery.cookie.js")
-  script(src="/js/blog/article.js")
-  script(src="/js/highlightjs/hightlight.js")
+  script(src=host+"/js/jquery.cookie.js")
+  script(src=host+"/js/blog/article.js")
+  script(src=host+"/js/highlightjs/hightlight.js")
   script.
     hljs.initHighlightingOnLoad();

@@ -109,5 +109,6 @@ app
     .use(router.allowedMethods());
 
 //listen the port
-if (!module.parent) app.listen(5123);
+app.listen(5123);
+console.log('server start at 5123');
 // app.listen(5123)

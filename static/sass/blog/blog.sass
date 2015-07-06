@@ -6,8 +6,8 @@ $width: 1020px
 
 @font-face
 	font-family: 'blog'
-	src: url('/fonts/blog.eot?iqof2f')
-	src: url('/fonts/blog.eot?#iefixiqof2f') format('embedded-opentype'), url('/fonts/blog.woff?iqof2f') format('woff'), url('/fonts/blog.ttf?iqof2f') format('truetype'), url('/fonts/blog.svg?iqof2f#blog') format('svg')
+	src: url($host+'/fonts/blog.eot?iqof2f')
+	src: url($host+'/fonts/blog.eot?#iefixiqof2f') format('embedded-opentype'), url($host+'/fonts/blog.woff?iqof2f') format('woff'), url($host+'/fonts/blog.ttf?iqof2f') format('truetype'), url($host+'/fonts/blog.svg?iqof2f#blog') format('svg')
 	font-weight: normal
 	font-style: normal
 
@@ -50,7 +50,7 @@ $width: 1020px
 	.blogNavTitle
 		font-family: 'icomoon'
 		color: #fff
-		line-height: 1.5em	
+		line-height: 1.5em
 		font-size: 18px
 		border-bottom: 1px dotted #666
 		text-indent: 5px
@@ -70,7 +70,7 @@ $width: 1020px
 		margin: 0 15px
 
 	header
-		font-size: 2em	
+		font-size: 2em
 		margin: 3px 0
 		overflow: hidden
 	time
@@ -84,7 +84,7 @@ $width: 1020px
 			font-size: 0.45em
 			color: #ccc
 		.blogmonth
-			position: absolute 
+			position: absolute
 			top: 1.3em
 			width: 45px
 			text-align: right
@@ -137,7 +137,7 @@ $width: 1020px
 		padding-top: 40px
 		padding-bottom: 80px
 	.blogList
-		time 
+		time
 			.blogmonth,
 			.blogyear,
 			.blogday
@@ -148,7 +148,7 @@ $width: 1020px
 				left: 0
 				width: auto
 				font-size: 18px
-	.blogList 
+	.blogList
 		h2
 			width: 100%
 			margin: 0
@@ -157,12 +157,12 @@ $width: 1020px
 		.blogListContent
 			margin: 0
 			padding: 0
-			line-height: 20px 
+			line-height: 20px
 			margin-top: 5px
 		footer span
 			margin: 10px 20px 10px 0
 
-.main_filter 
+.main_filter
 	z-index: -1
 
 .blogpages
@@ -260,7 +260,7 @@ $width: 1020px
 			transform: rotateY(0deg)
 			span
 				display: inline-block
-				padding: 10px 20px	
+				padding: 10px 20px
 	li:hover,li.active
 		a
 			-webkit-transform: rotateY(180deg)
@@ -293,8 +293,8 @@ $width: 1020px
 			font-size: 14px
 			display: block
 			text-decoration: none
-			
-			margin-bottom: 1px 
+
+			margin-bottom: 1px
 			color: #7F8289
 			h2
 				margin: 0
@@ -307,10 +307,10 @@ $width: 1020px
 			.blog-list-comment
 				font-family: "blog"
 				margin-left: 10px
-			.blog-list-time-icon 
+			.blog-list-time-icon
 				font-family: "blog"
 			.blog-list-info
-				padding: 10px 0 
+				padding: 10px 0
 			.blog-list-intro
 				padding: 0px 10px
 				line-height: 1.6em
@@ -343,7 +343,7 @@ $width: 1020px
 		-moz-transition: all 400ms ease-out
 		-o-transition: all 400ms ease-out
 		transition: all 400ms ease-out
-	.blog-list-nav li 
+	.blog-list-nav li
 		height: 41px
 		width: 100%
 		margin-bottom: 1px
@@ -362,4 +362,3 @@ $width: 1020px
 		.blog-list-page
 			a
 				font-size: 12px
-		

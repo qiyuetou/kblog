@@ -13,7 +13,7 @@
 	-ms-transition: $key
 	transition: $key
 
-.lab_comment 
+.lab_comment
 	width: 960px
 	margin: 0 auto
 	color: #fff
@@ -25,7 +25,7 @@
 .lab_block
 	overflow: hidden
 	float: left
-	margin: 10px 
+	margin: 10px
 	background: rgba(255,255,255,1)
 	width: 235px
 	height: 328px
@@ -53,7 +53,7 @@
 	+transition(.5s all ease-in)
 .lab_icon_text_active
 	+blur(2px)
-.lab_block:hover 
+.lab_block:hover
 	opacity: 1
 	.lab_icon_text
 		+blur(0px)
@@ -78,10 +78,10 @@
 	padding: 5px 10px
 	word-break: break-all
 .lab_icon_msite
-	background: url('/img/lab/msite.jpg')
+	background: url($host+'/img/lab/msite.jpg')
 	background-size: cover
 .lab_icon_mstaticize
-	background: url('/img/lab/mstaticize.jpg')
+	background: url($host+'/img/lab/mstaticize.jpg')
 	background-size: cover
 
 

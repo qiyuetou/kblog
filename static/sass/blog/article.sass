@@ -5,14 +5,14 @@ $width: 1020px
 
 @font-face
 	font-family: 'icomoon'
-	src: url('/fonts/icomoon.eot?iqof2f')
-	src: url('/fonts/icomoon.eot?#iefixiqof2f') format('embedded-opentype'), url('/fonts/icomoon.woff?iqof2f') format('woff'), url('/fonts/icomoon.ttf?iqof2f') format('truetype'), url('/fonts/icomoon.svg?iqof2f#icomoon') format('svg')
+	src: url($host+'/fonts/icomoon.eot?iqof2f')
+	src: url($host+'/fonts/icomoon.eot?#iefixiqof2f') format('embedded-opentype'), url($host+'/fonts/icomoon.woff?iqof2f') format('woff'), url($host+'/fonts/icomoon.ttf?iqof2f') format('truetype'), url($host+'/fonts/icomoon.svg?iqof2f#icomoon') format('svg')
 	font-weight: normal
 	font-style: normal
-@font-face 
+@font-face
 	font-family: 'article'
-	src: url('/fonts/article.eot?usc0i')
-	src: url('/fonts/article.eot?#iefixusc0i') format('embedded-opentype'), url('/fonts/article.woff?usc0i') format('woff'), url('/fonts/article.ttf?usc0i') format('truetype'), url('/fonts/article.svg?usc0i#article') format('svg')
+	src: url($host+'/fonts/article.eot?usc0i')
+	src: url($host+'/fonts/article.eot?#iefixusc0i') format('embedded-opentype'), url($host+'/fonts/article.woff?usc0i') format('woff'), url($host+'/fonts/article.ttf?usc0i') format('truetype'), url($host+'/fonts/article.svg?usc0i#article') format('svg')
 	font-weight: normal
 	font-style: normal
 
@@ -21,7 +21,7 @@ $width: 1020px
 	overflow: hidden
 	width: $width
 	margin: 0 auto
-	
+
 .blogContent
 	font-size: 14px
 	width: $width
@@ -84,7 +84,7 @@ $width: 1020px
 	text-align: right
 
 .blogCont,
-	padding: 15px 0 0 0 
+	padding: 15px 0 0 0
 
 .blogCopyright
 	overflow: hidden
@@ -108,7 +108,7 @@ $width: 1020px
 .blogNavNext,
 .blogNavPrev
 	a
-		overflow: hidden 
+		overflow: hidden
 		white-space: nowrap
 		text-overflow: ellipsis
 		display: inline-block
@@ -184,8 +184,8 @@ $width: 1020px
 		width: 60px
 	button
 		border: 1px dotted #666
-		display: inline-block 
-		color: #ccc 
+		display: inline-block
+		color: #ccc
 		background: rgba(00, 00, 00, 0.5)
 		padding: 3px 8px
 		margin-left: 10px
@@ -221,8 +221,8 @@ $width: 1020px
 		flex: 1 100%
 		float: none
 		width: auto
-		margin: 0 
-		
+		margin: 0
+
 	.blogTitle
 		height: auto
 		margin: auto
@@ -245,7 +245,7 @@ $width: 1020px
 		img
 			margin-top: 10px
 
-	.bCPost 
+	.bCPost
 		label
 			text-align: left
 			width: auto
@@ -276,7 +276,7 @@ body,html
 
 .article
 	position: absolute
-	top: 0 
+	top: 0
 	left: 0
 	bottom: 0
 	right: 0
@@ -328,7 +328,7 @@ body,html
 	text-align: center
 	margin-left: -40px
 
-	
+
 .article-guid_in
 	cursor: pointer
 	color: #E0E0E0
@@ -376,18 +376,18 @@ body,html
 	padding: 40px 10% 0 10%
 	background: #2F3238
 	overflow: hidden
-	h1 
+	h1
 		margin: 50px 0 20px
 		font-size: 30px
 	h2
 		margin: 35px 0 20px
 		font-size: 26px
-	h3 
+	h3
 		margin: 20px 0
 		font-size: 21px
-	h4 
+	h4
 		font-size: 18px
-	h5,h6 
+	h5,h6
 		font-size: 16px
 	p
 		margin: 0 0 20px
@@ -419,7 +419,7 @@ body,html
 		width: 100%
 		margin-bottom: 20px
 		thead:first-child tr:first-child>th:first-child,
-		table-bordered tbody:first-child tr:first-child>td:first-child 
+		table-bordered tbody:first-child tr:first-child>td:first-child
 			-webkit-border-top-left-radius: 4px
 			border-top-left-radius: 4px
 			-moz-border-radius-topleft: 4px
@@ -472,20 +472,20 @@ body,html
 		margin: 0
 		border: none
 		background: #3C3F45
-		color: #23262C 
-		cursor: pointer 
-		display: inline-block 
-		font-size: 18px 
-		font-weight: 500 
-		padding: 16px 80px 
-		text-align: center 
-		vertical-align: middle 
-		width: auto 
-		// margin-top: 30px 
-		-webkit-transition: background 0.1s linear 0s, color 0.1s linear 0s 
-		-moz-transition: background 0.1s linear 0s, color 0.1s linear 0s 
-		-o-transition: background 0.1s linear 0s, color 0.1s linear 0s 
-		transition: background 0.1s linear 0s, color 0.1s linear 0s 
+		color: #23262C
+		cursor: pointer
+		display: inline-block
+		font-size: 18px
+		font-weight: 500
+		padding: 16px 80px
+		text-align: center
+		vertical-align: middle
+		width: auto
+		// margin-top: 30px
+		-webkit-transition: background 0.1s linear 0s, color 0.1s linear 0s
+		-moz-transition: background 0.1s linear 0s, color 0.1s linear 0s
+		-o-transition: background 0.1s linear 0s, color 0.1s linear 0s
+		transition: background 0.1s linear 0s, color 0.1s linear 0s
 	button:hover
 		background: #DE5E60
 		color: #fff
@@ -514,7 +514,7 @@ body,html
 .comment-block-imgbg
 	float: left
 	overflow: hidden
-	background: url('/img/avatar/nobody.jpg')
+	background: url($host+'/img/avatar/nobody.jpg')
 	background-size: cover
 .comment-block-avatar
 	float: left
@@ -557,18 +557,18 @@ body,html
 		padding: 40px 10% 0 10%
 		background: #2F3238
 		overflow: hidden
-		h1 
+		h1
 			margin: 40px 0 10px
 			font-size: 15px
 		h2
 			margin: 25px 0 10px
 			font-size: 21px
-		h3 
+		h3
 			margin: 10px 0
 			font-size: 16px
-		h4 
+		h4
 			font-size: 13px
-		h5,h6 
+		h5,h6
 			font-size: 11px
 		p
 			margin: 0 0 10px
@@ -622,5 +622,3 @@ body,html
 		height: 6em
 	.article-content pre
 		padding: 5px
-
-

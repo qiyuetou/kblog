@@ -1,7 +1,7 @@
 extend layout
 
 block css
-	link(rel="stylesheet" href="/css/lab/lab.css")
+	link(rel="stylesheet" href=host+"/css/lab/lab.css")
 
 block content
 	.lab_comment
@@ -23,4 +23,4 @@ block content
 				p.lab_explain_text 一个轻量级，基于文件系统的node.js web server框架
 
 block js
-	script(src="/js/lab/lab.js")
+	script(src=host+"/js/lab/lab.js")

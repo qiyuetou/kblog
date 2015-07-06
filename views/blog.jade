@@ -1,7 +1,7 @@
 extend layout
 
 block css
-  link(rel="stylesheet" href="/css/blog/blog.css")
+  link(rel="stylesheet" href=host+"/css/blog/blog.css")
 
 block content
 
@@ -55,5 +55,5 @@ block content
         span= " 共"+ page.total +"页"
 
 block js
-  script(src="/js/jquery.cookie.js")
-  script(src="/js/blog/blog.js")
+  script(src=host+"/js/jquery.cookie.js")
+  script(src=host+"/js/blog/blog.js")
