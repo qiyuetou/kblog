@@ -1,12 +1,14 @@
 var nodemailer = require("nodemailer");
+var config = require("../sys/config");
 
+console.log(config.config.email.pwd);
 var transport = nodemailer.createTransport({
     host: "smtp.exmail.qq.com", // hostname
     secure: true, // use SSL
     port: 465, // port for secure SMTP
     auth: {
         user: "noreplay@zhuwenlong.com",
-        pass: "zwl891027"
+        pass: config.config.email.pwd
     }
 });
 

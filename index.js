@@ -6,6 +6,7 @@ var staticFile = require('koa-static');
 var mongo = require('./mongo/mongo');
 var session = require('./session/session');
 var vhost = require('./vhost/index');
+var config = require('./sys/config');
 
 var app = module.exports = koa();
 
@@ -17,9 +18,9 @@ app.use(session());
 
 //mongodb
 app.use(mongo({
-    db: 'zhuwenlong',
-    user: 'zhuwenlong',
-    pwd: '123123'
+    db: config.config.db.db,
+    user: config.config.db.user,
+    pwd: config.config.db.pwd
 }));
 
 //vhost

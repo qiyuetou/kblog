@@ -1,5 +1,5 @@
 var render = require('../views/readen.js');
-
+var config = require("../sys/config");
 var querystring = require('querystring');
 
 
@@ -159,7 +159,7 @@ function* blogComment(Tclass, Tpage) {
             port: 465, // port for secure SMTP
             auth: {
                 user: "noreplay@zhuwenlong.com",
-                pass: "zwl891027"
+                pass: config.config.email.pwd
             }
         });
 
