@@ -23,11 +23,9 @@
         if (name == 'vcode') {
             return false;
         }
-
         $.cookie('article-' + name, val, {
             expires: 365
         });
-
     });
 
     function formAutofild(tar) {
@@ -62,32 +60,20 @@
         return false;
     });
 
-    //scroll'
-    // alert(1)
-    var articleGuid = parseInt($.cookie('article-guid') || 0);
-
-    if (articleGuid <= 2) {
-        setTimeout(function() {
-            $('.article-guid').fadeIn()
-        }, 1000);
-        $('.article').on('scroll', function() {
-            var top = $(this).scrollTop();
-            if (top >= 500) {
-                $('.article').unbind('scroll');
-                $.cookie('article-guid', ++articleGuid, {
-                    expires: 365
-                });
-            }
-        });
-    }
-
-    $('.article-guid').on('click', function() {
-        $.cookie('article-guid', ++articleGuid, {
-            expires: 365
-        });
-        $('body').animate({
-            scrollTop: document.body.clientHeight
-        });
-    })
+	// for submit
+	$('.comment,.comment-list').on('submit','form',function(){
+		var val = $(this).serialize();
+		var url = $(this).attr('action');
+		$.ajax({
+			url : url,
+			method: 'post',
+			data: val,
+			success: function(data){
+				console.log(data);
+			}
+		})
+		console.log(val)
+		return false;
+	})
 
 })()

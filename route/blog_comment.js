@@ -16,15 +16,12 @@ function* blogComment(Tclass, Tpage) {
             self.req.addListener('data', function(chunk) {
                 data += chunk;
             }).addListener('end', function() {
-                // var dataObj =;
                 callback(null, querystring.parse(data));
             });
         }
     })();
 
     if (!sessionCode || dataObj.vcode.toLowerCase() !== sessionCode.toLowerCase()) {
-        // this.body = "保存失败，验证码错误";
-        // showHTML('保存失败，验证码错误');
         self.body = yield render('blog_comment.jade', {
             text: '保存失败，验证码错误'
         });

@@ -48,19 +48,23 @@ router.post('/blog/articleComment', requireRoute('blog_comment'));
 //verification
 router.get('/verification/img', requireRoute('/verification/img'));
 
+//api
+router.post('/api/sendemail', requireRoute('/api/sendemail'));
+router.post('/api/message',requireRoute('/api/postMessage'));
+
 //about
 router.get('/about', function* () {
     this.status = 301;
     this.redirect('/#about');
 });
 
+// leave message
+router.get('/message', requireRoute('message'));
+
 //rss
 router.get('/rss', requireRoute('/rss'))
 
-//api
-router.post('/api/sendemail', requireRoute('/api/sendemail'));
-
-// //lab
+//lab
 router.get('/lab', requireRoute('lab'));
 
 //lab
