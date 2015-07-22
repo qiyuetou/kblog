@@ -57,7 +57,7 @@ function* email() {
 
     if (yield saveToDb()) {
         code = 200
-        message = '保存成功'
+        message = dataObj
     }else{
         code = 403
         message = '保存失败'

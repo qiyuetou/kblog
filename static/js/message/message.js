@@ -70,9 +70,35 @@
 			data: val,
 			success: function(data){
 				console.log(data);
+                if(data.code == 200){
+                    var html = [
+                        '<div class="comment-block">',
+                            '<div class="comment-block-imgbg">',
+                                '<img src="' + data.message.avatar + '" onerror="this.src=\'/img/avatar/nobody.jpg\'" class="comment-block-avatar">',
+                            '</div>',
+                            '<div class="comment-info">',
+                                '<div class="comment-info-head">',
+                                    '您',
+                                    '<span>刚刚</span>',
+                                        '<span class="comment-info-replay">',
+                                        '<a href="#" cid="' + data.message._id + '">m回复</a>',
+                                    '</span>',
+                                    '<div class="comment-text">' + data.message.content + '</div>',
+                                '</div>',
+                            '</div>',
+                        '</div>'
+                    ].join('');
+                    $('input[name=vcode]').val('');
+                    $('.verification-image').remove();
+                    $('form').attr('verification',false);
+                    $('.comment-block form').remove();
+                    $('textarea[name="content"]').val('')
+                    $('.comment-list').prepend(html);
+                    alert('留言成功')
+                    //
+                }
 			}
 		})
-		console.log(val)
 		return false;
 	})
 
