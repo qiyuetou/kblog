@@ -12,7 +12,6 @@ block content
 				input(type="url" name="blog" placeholder="WebSite/Blog")
 				input(type="text" name="vcode" placeholder="Verification code" required="required")
 				textarea(placeholder="Let's say some thing" name="content")
-				//- img(src="/verification/img")
 				button Post Comment
 	.comment-list
 		- each commList in comment
@@ -40,4 +39,3 @@ block content
 block js
 	script(src=host+"/js/jquery.cookie.js")
 	script(src=host+"/js/message/message.js")
-	
