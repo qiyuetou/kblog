@@ -45,6 +45,7 @@ function* email() {
                 var commentCol = db.collection('message');
                 console.log(dataObj);
                 commentCol.insert(dataObj, function(err, result) {
+                    console.log(err);
                     if (!dataObj['content'] || err) {
                         callback(null, false)
                     } else {
