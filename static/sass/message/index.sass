@@ -3,15 +3,25 @@
 @import "../component/comment.sass"
 
 @font-face
-	font-family: "icomoon"
-	src: url($host+'/fonts/icomoon.eot?iqof2f')
-	src: url($host+'/fonts/icomoon.eot?#iefixiqof2f') format('embedded-opentype'), url($host+'/fonts/icomoon.woff?iqof2f') format('woff'), url($host+'/fonts/icomoon.ttf?iqof2f') format('truetype'), url($host+'/fonts/icomoon.svg?iqof2f#icomoon') format('svg')
+	font-family: "message"
+	src: url($host+'/fonts/message.eot?iqof2f')
+	src: url($host+'/fonts/message.eot?#iefixiqof2f') format('embedded-opentype'), url($host+'/fonts/message.woff?iqof2f') format('woff'), url($host+'/fonts/message.ttf?iqof2f') format('truetype'), url($host+'/fonts/message.svg?iqof2f#message') format('svg')
 	font-weight: normal
 	font-style: normal
 
+@font-face
+	font-family: 'Material Icons'
+	font-style: normal
+	font-weight: 400
+	src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v7/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2')
 
+.messageBox
+	-webkit-transition: all 0.4s ease-in
+	-moz-transition: all 0.4s ease-in
+	-ms-transition: all 0.4s ease-in
+	transition: all 0.4s ease-in
 .main_filter
 	display: none
 .message
 	background: #2F3238
-	padding-top: 100px
+	padding-top: 40px

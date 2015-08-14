@@ -54,7 +54,15 @@ module.exports = function(grunt) {
                 options: {
                     livereload: 5027
                 }
+            },
+            jsx: {
+                files: ['static/jsx/**/*.jsx'],
+                tasks: ['browserify'],
+                options: {
+                    livereload: true
+                }
             }
+
         },
         cssmin: {
             minify: {
@@ -147,6 +155,17 @@ module.exports = function(grunt) {
                     ext: '.js'
                 }]
             }
+        },
+        browserify: {
+            'react': {
+                files: [{
+                    expand: true,
+                    cwd: 'static/jsx/',
+                    src: ['**/*.jsx','!component/**/*.jsx'],
+                    dest: 'static/js/',
+                    ext: '.js'
+                }]
+            }
         }
 
     });
@@ -160,8 +179,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-staticize');
+    grunt.loadNpmTasks('grunt-browserify');
 
 
-    grunt.registerTask('default', ['compass', 'imagemin', 'cssmin', 'watch']);
-    grunt.registerTask('online', ['clean', 'copy', 'uglify', 'staticize']); //, 
+    grunt.registerTask('default', ['compass', 'imagemin', 'cssmin', 'browserify', 'watch']);
+    grunt.registerTask('online', ['clean', 'copy', 'uglify', 'staticize']); //,
+    grunt.registerTask('test', ['browserify']); //,
 };
