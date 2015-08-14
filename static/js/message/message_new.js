@@ -41024,13 +41024,12 @@ var listAction = Reflux.createActions([
 
 var listStore = Reflux.createStore({
     listenables: listAction,
-    onLoadList:function(){
+    onLoadList:function(obj){
         var self = this;
-        console.log('????',arguments);
-        $.get('/api/message',function(data){
-            //?limit=2&page=1
-            console.log('*****get',data);
-            self.trigger(data.message);
+        obj = obj || {};
+        var url = '/api/message?page=' + (obj.page ? obj.page : 1);
+        $.get(url,function(data){
+            self.trigger(data);
         })
     }
 });
@@ -41051,7 +41050,10 @@ var messageList = React.createClass({displayName: "messageList",
     mixins: [Reflux.ListenerMixin],
     getInitialState:function(){
         return {
-            list:[]
+            list:[],
+            page:[],
+            totalPage:1,
+            thisPage:1,
         }
     },
     childContextTypes: {
@@ -41069,7 +41071,8 @@ var messageList = React.createClass({displayName: "messageList",
         this.listenTo(listStore, this.listDataReceived);
     },
     listDataReceived: function(lists){
-        lists.map(function(listVal){
+        // deal with message
+        lists.message.map(function(listVal){
             var time = new Date(listVal.time);
             var month = time.getMonth()+1;
             var date =  time.getDate();
@@ -41085,12 +41088,29 @@ var messageList = React.createClass({displayName: "messageList",
             timeStr += (seconds<10 ? '0' + seconds : seconds) ;
             listVal.time = timeStr ;
 
-            // listVal.name = listVal.name || 'Mofei的好伙伴';
             return listVal;
         })
-        this.setState({list: lists});
+        this.setState({list: lists.message});
+
+        // deal with page
+        var page = this.page(lists.page.thisPage, lists.page.totalPage);
+        this.setState({page: page,totalPage: lists.page.totalPage,thisPage: lists.page.thisPage});
+    },
+    page: function(now, total) {
+        var btns = [];
+        btns = btns.concat(now > 1 ? [{type: 'start'}, {type: 'preview'}] : []);
+        btns = btns.concat(now >= 4 ? [{type: 'ellipsis'}] : []);
+        var start = now - 2 >= 1 ? now - 2 : 1;
+        var end = now + 2 <= total ? now + 2 : total;
+        for (var i = start; i <= end; i++) {
+            btns.push({type: (i==now ? 'active' : 'page'),'number': i});
+        }
+        btns = btns.concat(now < total - 2 ? [{type: 'ellipsis'}] : []);
+        btns = btns.concat(now !== total ? [{type: 'next'}, {type: 'end'}] : []);
+        return btns;
     },
     render: function(){
+        var self = this;
         return (
             React.createElement("div", null, 
                 this.state.list.map(function(listValue){
@@ -41109,13 +41129,39 @@ var messageList = React.createClass({displayName: "messageList",
                                         name, 
                                         React.createElement("span", null, listValue.time), 
                                         React.createElement("span", {className: "comment-info-replay"}, 
-                                            React.createElement("a", {href: "#", cid: listValue._id}, "m回复")
+                                            React.createElement("a", {href: "#", cid: listValue._id, className: "messageRep"}, " 回复")
                                         ), 
                                         React.createElement("div", {className: "comment-text"}, listValue.content)
                                     )
                                 )
                             )
-                })
+                }), 
+                React.createElement("section", {className: "blog-list-page"}, 
+                    this.state.page.map(function(pageV){
+                        if(pageV.type == 'start'){
+                            return React.createElement("span", {class: "blogpagesellip", onClick: listAction.loadList.bind(this, {page:1})}, "首页")
+                        }
+                        if(pageV.type == 'preview'){
+                            return React.createElement("span", {class: "blogpagesellip", onClick: listAction.loadList.bind(this, {page:self.state.thisPage-1})}, "上一页")
+                        }
+                        if(pageV.type == 'next'){
+                            return React.createElement("span", {class: "blogpagesellip", onClick: listAction.loadList.bind(this, {page:self.state.thisPage+1})}, "下一页")
+                        }
+                        if(pageV.type == 'end'){
+                            return React.createElement("span", {class: "blogpagesellip", onClick: listAction.loadList.bind(this, {page:self.state.totalPage})}, "尾页")
+                        }
+                        if(pageV.type == 'ellipsis'){
+                            return React.createElement("span", {class: "blogpagesellip"}, "...")
+                        }
+                        if(pageV.type == 'active'){
+                            return React.createElement("span", {className: "active"}, pageV.number)
+                        }
+                        if(pageV.type == 'page'){
+                            return React.createElement("span", {href: "?page="+pageV.number, onClick: listAction.loadList.bind(this, {page:pageV.number})}, pageV.number)
+                        }
+                    }), 
+                    '共' + this.state.totalPage + '页'
+                )
             )
         )
     }
