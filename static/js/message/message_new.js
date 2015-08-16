@@ -40912,8 +40912,21 @@ module.exports = function(listenables){
 };
 
 },{"reflux-core/lib/ListenerMethods":317}],333:[function(require,module,exports){
+var Reflux = require('reflux');
+var listAction = Reflux.createActions([
+    'loadList',
+    'addOne'
+]);
+
+module.exports = listAction;
+
+},{"reflux":330}],334:[function(require,module,exports){
 var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
+
+var Reflux = require('reflux');
+var listAction = require('./messageAction.jsx');
+var listStore = require('./messageStore.jsx');
 
 var React = require('react');
 var mui = require('material-ui');
@@ -40946,7 +40959,7 @@ var messageForm = React.createClass({displayName: "messageForm",
     },
     openMessage: function(e){
         var self = this;
-        if(!this.canPost){
+        if (!this.canPost) {
             this.canPost = !this.canPost;
             var refs = this.refs;
             refs.messageBox.getDOMNode().style.height = '315px';
@@ -40981,8 +40994,9 @@ var messageForm = React.createClass({displayName: "messageForm",
             success: function(data){
                 if(data.code == 200){
                     alert('发布成功')
+                    listAction.addOne(data);
                 }else{
-                    alert('发布失败')
+                    alert('发布失败'+data.message)
                 }
                 console.log('form callback',data)
             }
@@ -41033,28 +41047,14 @@ var messageForm = React.createClass({displayName: "messageForm",
 
 module.exports = messageForm;
 
-},{"material-ui":35,"react":313,"react-tap-event-plugin":140}],334:[function(require,module,exports){
+},{"./messageAction.jsx":333,"./messageStore.jsx":336,"material-ui":35,"react":313,"react-tap-event-plugin":140,"reflux":330}],335:[function(require,module,exports){
 var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
 //
 var Reflux = require('reflux');
-var listAction = Reflux.createActions([
-    'loadList'
-]);
-
-var listStore = Reflux.createStore({
-    listenables: listAction,
-    onLoadList:function(obj){
-        var self = this;
-        obj = obj || {};
-        var url = '/api/message?page=' + (obj.page ? obj.page : 1);
-        $.get(url,function(data){
-            self.trigger(data);
-        })
-    }
-});
-//
+var listAction = require('./messageAction.jsx');
+var listStore = require('./messageStore.jsx');
 
 var React = require('react');
 var mui = require('material-ui');
@@ -41089,9 +41089,19 @@ var messageList = React.createClass({displayName: "messageList",
         listAction.loadList();
     },
     componentDidMount: function(){
-        this.listenTo(listStore, this.listDataReceived);
+        this.listenTo(listStore, this.actionDispatch);
     },
-    listDataReceived: function(lists){
+    actionDispatch: function(type,data) {
+        this[type] && this[type](data);
+    },
+    addOne: function(data){
+        data.message.time = '刚刚';
+        var newList = this.state.list;
+        newList.unshift(data.message);
+        console.log('****',newList);
+        this.setState({list: newList});
+    },
+    loadList: function(lists){
         // deal with message
         lists.message.map(function(listVal){
             var time = new Date(listVal.time);
@@ -41190,7 +41200,30 @@ var messageList = React.createClass({displayName: "messageList",
 
 module.exports = messageList;
 
-},{"material-ui":35,"react":313,"react-tap-event-plugin":140,"reflux":330}],335:[function(require,module,exports){
+},{"./messageAction.jsx":333,"./messageStore.jsx":336,"material-ui":35,"react":313,"react-tap-event-plugin":140,"reflux":330}],336:[function(require,module,exports){
+var Reflux = require('reflux');
+
+var listAction = require('./messageAction.jsx');
+
+var listStore = Reflux.createStore({
+    listenables: listAction,
+    onLoadList:function(obj){
+        var self = this;
+        obj = obj || {};
+        var url = '/api/message?page=' + (obj.page ? obj.page : 1);
+        $.get(url,function(data){
+            self.trigger('loadList', data);
+        })
+    },
+    onAddOne:function(obj){
+        var self = this;
+        self.trigger('addOne', obj);
+    }
+});
+
+module.exports = listStore;
+
+},{"./messageAction.jsx":333,"reflux":330}],337:[function(require,module,exports){
 var React = require('react');
 
 var Message = require('../component/messageForm.jsx');
@@ -41199,4 +41232,4 @@ var MessageList = require('../component/messageList.jsx');
 React.render(React.createElement(Message, null),document.getElementById('msgForm'));
 React.render(React.createElement(MessageList, null),document.getElementById('commentList'));
 
-},{"../component/messageForm.jsx":333,"../component/messageList.jsx":334,"react":313}]},{},[335]);
+},{"../component/messageForm.jsx":334,"../component/messageList.jsx":335,"react":313}]},{},[337]);

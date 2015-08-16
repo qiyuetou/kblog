@@ -1,6 +1,10 @@
 var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
+var Reflux = require('reflux');
+var listAction = require('./messageAction.jsx');
+var listStore = require('./messageStore.jsx');
+
 var React = require('react');
 var mui = require('material-ui');
 var ThemeManager = new mui.Styles.ThemeManager();
@@ -32,7 +36,7 @@ var messageForm = React.createClass({
     },
     openMessage: function(e){
         var self = this;
-        if(!this.canPost){
+        if (!this.canPost) {
             this.canPost = !this.canPost;
             var refs = this.refs;
             refs.messageBox.getDOMNode().style.height = '315px';
@@ -67,8 +71,9 @@ var messageForm = React.createClass({
             success: function(data){
                 if(data.code == 200){
                     alert('发布成功')
+                    listAction.addOne(data);
                 }else{
-                    alert('发布失败')
+                    alert('发布失败'+data.message);
                 }
                 console.log('form callback',data)
             }

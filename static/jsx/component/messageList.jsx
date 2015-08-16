@@ -3,22 +3,8 @@ injectTapEventPlugin();
 
 //
 var Reflux = require('reflux');
-var listAction = Reflux.createActions([
-    'loadList'
-]);
-
-var listStore = Reflux.createStore({
-    listenables: listAction,
-    onLoadList:function(obj){
-        var self = this;
-        obj = obj || {};
-        var url = '/api/message?page=' + (obj.page ? obj.page : 1);
-        $.get(url,function(data){
-            self.trigger(data);
-        })
-    }
-});
-//
+var listAction = require('./messageAction.jsx');
+var listStore = require('./messageStore.jsx');
 
 var React = require('react');
 var mui = require('material-ui');
@@ -53,9 +39,19 @@ var messageList = React.createClass({
         listAction.loadList();
     },
     componentDidMount: function(){
-        this.listenTo(listStore, this.listDataReceived);
+        this.listenTo(listStore, this.actionDispatch);
     },
-    listDataReceived: function(lists){
+    actionDispatch: function(type,data) {
+        this[type] && this[type](data);
+    },
+    addOne: function(data){
+        data.message.time = '刚刚';
+        var newList = this.state.list;
+        newList.unshift(data.message);
+        console.log('****',newList);
+        this.setState({list: newList});
+    },
+    loadList: function(lists){
         // deal with message
         lists.message.map(function(listVal){
             var time = new Date(listVal.time);

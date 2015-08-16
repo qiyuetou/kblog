@@ -17,14 +17,14 @@ function* email() {
     })();
 
     // check vcode
-    // var sessionCode = self.session.get('vcode');
-    // if (!sessionCode || dataObj.vcode.toLowerCase() !== sessionCode.toLowerCase()) {
-    //     self.body = {
-    //         code:'403',
-    //         message:'保存失败，验证码错误'
-    //     }
-    //     return false;
-    // }
+    var sessionCode = self.session.get('vcode');
+    if (!sessionCode || dataObj.vcode.toLowerCase() !== sessionCode.toLowerCase()) {
+        self.body = {
+            code:'403',
+            message:'保存失败，验证码错误'
+        }
+        return false;
+    }
 
     // add timestamp
     dataObj.time = new Date();
