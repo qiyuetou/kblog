@@ -55,6 +55,26 @@ var messageForm = React.createClass({
             return false;
         }
     },
+    postMessage: function(){
+        var dom = this.refs.messageFrom.getDOMNode();
+        var formData = $(dom).serializeArray();
+        var url = $(dom).attr('action');
+        console.log('post message', formData, url);
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            success: function(data){
+                if(data.code == 200){
+                    alert('发布成功')
+                }else{
+                    alert('发布失败')
+                }
+                console.log('form callback',data)
+            }
+        })
+        return false;
+    },
     focus: function(){
         console.log(this.state.vcodeShow);
     },
@@ -68,7 +88,6 @@ var messageForm = React.createClass({
         var val = e.target.value;
         var obj={}
         obj[name]=val;
-        console.log(obj)
         this.setState(obj)
         $.cookie('article-' + name, val, {
             expires: 365,
@@ -81,17 +100,19 @@ var messageForm = React.createClass({
             vcodeStyle.display = 'block';
         }
         return (
-            <div style={{height: 0,overflow:'hidden','padding-top':36}} ref="messageBox" className="messageBox" onFocus={this.focus} >
-                <TextField hintText="Nickname" name="name" type="text" fullWidth={true} onChange={this.saveVal} value={this.state.name} />
-                <TextField hintText="Email" name="email" type="email" fullWidth={true}  onChange={this.saveVal} value={this.state.email} />
-                <TextField hintText="WebSite/Blog" name="blog" type="url" fullWidth={true}  onChange={this.saveVal} value={this.state.blog} />
-                <TextField hintText="Verification code" name="vcode" type="text" required="required" fullWidth={true} />
-                <TextField hintText="Let's say some thing" name="content" required="required" multiLine={true} fullWidth={true} />
-                <img class="verification-image" src={this.state.vcodeSrc} style={vcodeStyle} onClick={this.changeVcode} />
-                <FlatButton onClick={this.openMessage} className="messageShowBtn" ref="messageShowBtn" style={{position:'absolute','left':0,'top':0,'width':'100%','fontFamily': 'message'}} type="submit" fullWidth={true} >
-                    <div dangerouslySetInnerHTML={{__html:this.state.btnTxt}}></div>
-                </FlatButton>
-            </div>
+            <form className="comment-box" action="/api/message" method="post" onSubmit={this.postMessage} ref="messageFrom">
+                <div style={{height: 0,overflow:'hidden','padding-top':36}} ref="messageBox" className="messageBox" onFocus={this.focus} >
+                    <TextField hintText="Nickname" name="name" type="text" fullWidth={true} onChange={this.saveVal} value={this.state.name} />
+                    <TextField hintText="Email" name="email" type="email" fullWidth={true}  onChange={this.saveVal} value={this.state.email} />
+                    <TextField hintText="WebSite/Blog" name="blog" type="url" fullWidth={true}  onChange={this.saveVal} value={this.state.blog} />
+                    <TextField hintText="Verification code" name="vcode" type="text" required="required" fullWidth={true} />
+                    <TextField hintText="Let's say some thing" name="content" required="required" multiLine={true} fullWidth={true} />
+                    <img class="verification-image" src={this.state.vcodeSrc} style={vcodeStyle} onClick={this.changeVcode} />
+                    <FlatButton onClick={this.openMessage} className="messageShowBtn" ref="messageShowBtn" style={{position:'absolute','left':0,'top':0,'width':'100%','fontFamily': 'message'}} type="submit" fullWidth={true} >
+                        <div dangerouslySetInnerHTML={{__html:this.state.btnTxt}}></div>
+                    </FlatButton>
+                </div>
+            </form>
         );
     }
 });

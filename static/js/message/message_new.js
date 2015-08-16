@@ -40969,6 +40969,26 @@ var messageForm = React.createClass({displayName: "messageForm",
             return false;
         }
     },
+    postMessage: function(){
+        var dom = this.refs.messageFrom.getDOMNode();
+        var formData = $(dom).serializeArray();
+        var url = $(dom).attr('action');
+        console.log('post message', formData, url);
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            success: function(data){
+                if(data.code == 200){
+                    alert('发布成功')
+                }else{
+                    alert('发布失败')
+                }
+                console.log('form callback',data)
+            }
+        })
+        return false;
+    },
     focus: function(){
         console.log(this.state.vcodeShow);
     },
@@ -40982,7 +41002,6 @@ var messageForm = React.createClass({displayName: "messageForm",
         var val = e.target.value;
         var obj={}
         obj[name]=val;
-        console.log(obj)
         this.setState(obj)
         $.cookie('article-' + name, val, {
             expires: 365,
@@ -40995,15 +41014,17 @@ var messageForm = React.createClass({displayName: "messageForm",
             vcodeStyle.display = 'block';
         }
         return (
-            React.createElement("div", {style: {height: 0,overflow:'hidden','padding-top':36}, ref: "messageBox", className: "messageBox", onFocus: this.focus}, 
-                React.createElement(TextField, {hintText: "Nickname", name: "name", type: "text", fullWidth: true, onChange: this.saveVal, value: this.state.name}), 
-                React.createElement(TextField, {hintText: "Email", name: "email", type: "email", fullWidth: true, onChange: this.saveVal, value: this.state.email}), 
-                React.createElement(TextField, {hintText: "WebSite/Blog", name: "blog", type: "url", fullWidth: true, onChange: this.saveVal, value: this.state.blog}), 
-                React.createElement(TextField, {hintText: "Verification code", name: "vcode", type: "text", required: "required", fullWidth: true}), 
-                React.createElement(TextField, {hintText: "Let's say some thing", name: "content", required: "required", multiLine: true, fullWidth: true}), 
-                React.createElement("img", {class: "verification-image", src: this.state.vcodeSrc, style: vcodeStyle, onClick: this.changeVcode}), 
-                React.createElement(FlatButton, {onClick: this.openMessage, className: "messageShowBtn", ref: "messageShowBtn", style: {position:'absolute','left':0,'top':0,'width':'100%','fontFamily': 'message'}, type: "submit", fullWidth: true}, 
-                    React.createElement("div", {dangerouslySetInnerHTML: {__html:this.state.btnTxt}})
+            React.createElement("form", {className: "comment-box", action: "/api/message", method: "post", onSubmit: this.postMessage, ref: "messageFrom"}, 
+                React.createElement("div", {style: {height: 0,overflow:'hidden','padding-top':36}, ref: "messageBox", className: "messageBox", onFocus: this.focus}, 
+                    React.createElement(TextField, {hintText: "Nickname", name: "name", type: "text", fullWidth: true, onChange: this.saveVal, value: this.state.name}), 
+                    React.createElement(TextField, {hintText: "Email", name: "email", type: "email", fullWidth: true, onChange: this.saveVal, value: this.state.email}), 
+                    React.createElement(TextField, {hintText: "WebSite/Blog", name: "blog", type: "url", fullWidth: true, onChange: this.saveVal, value: this.state.blog}), 
+                    React.createElement(TextField, {hintText: "Verification code", name: "vcode", type: "text", required: "required", fullWidth: true}), 
+                    React.createElement(TextField, {hintText: "Let's say some thing", name: "content", required: "required", multiLine: true, fullWidth: true}), 
+                    React.createElement("img", {class: "verification-image", src: this.state.vcodeSrc, style: vcodeStyle, onClick: this.changeVcode}), 
+                    React.createElement(FlatButton, {onClick: this.openMessage, className: "messageShowBtn", ref: "messageShowBtn", style: {position:'absolute','left':0,'top':0,'width':'100%','fontFamily': 'message'}, type: "submit", fullWidth: true}, 
+                        React.createElement("div", {dangerouslySetInnerHTML: {__html:this.state.btnTxt}})
+                    )
                 )
             )
         );
