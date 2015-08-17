@@ -17,14 +17,14 @@ function* email() {
     })();
 
     // check vcode
-    // var sessionCode = self.session.get('vcode');
-    // if (!sessionCode || dataObj.vcode.toLowerCase() !== sessionCode.toLowerCase()) {
-    //     self.body = {
-    //         code:'403',
-    //         message:'保存失败，验证码错误'
-    //     }
-    //     return false;
-    // }
+    var sessionCode = self.session.get('vcode');
+    if (!sessionCode || dataObj.vcode.toLowerCase() !== sessionCode.toLowerCase()) {
+        self.body = {
+            code:'403',
+            message:'保存失败，验证码错误'
+        }
+        return false;
+    }
 
     // add timestamp
     dataObj.time = new Date();
@@ -45,6 +45,7 @@ function* email() {
                 var commentCol = db.collection('message');
                 console.log(dataObj);
                 commentCol.insert(dataObj, function(err, result) {
+                    console.log(err);
                     if (!dataObj['content'] || err) {
                         callback(null, false)
                     } else {

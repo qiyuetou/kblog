@@ -1,0 +1,23 @@
+{
+  "name": "kblog",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/zmofei/kblog",
+  "authors": [
+    "Mofei Zhu <13761509829@163.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.13.3"
+  }
+}

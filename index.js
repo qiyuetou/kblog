@@ -50,6 +50,7 @@ router.get('/verification/img', requireRoute('/verification/img'));
 
 //api
 router.post('/api/sendemail', requireRoute('/api/sendemail'));
+router.get('/api/message',requireRoute('/api/getMessage'));
 router.post('/api/message',requireRoute('/api/postMessage'));
 
 //about
