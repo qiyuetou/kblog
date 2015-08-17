@@ -4,4 +4,8 @@ node_modules
 *~
 .DS_Store
 sys/
+<<<<<<< HEAD
+static/upload/
+=======
 bower_components
+>>>>>>> 5bf533981282b9f5079c326efece2e5c4662c2a6
