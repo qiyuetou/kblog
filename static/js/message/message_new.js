@@ -41033,14 +41033,14 @@ var messageForm = React.createClass({displayName: "messageForm",
         });
     },
     render: function(){
-        var boxStyle = {height: 0,overflow:'hidden','padding-top':36};
+        var boxStyle = {height: 0,overflow:'hidden','paddingTop':36};
         var btnStyle = {position:'absolute','left':0,'top':0,'width':'100%','fontFamily': 'message'};
         var vcodeStyle = {'display':'none'};
         if (this.state.vcodeShow) {
             vcodeStyle.display = 'block';
         }
         if (this.props.open == 'true') {
-            boxStyle = {height: 'auto',overflow:'hidden','padding-top':0}
+            boxStyle = {height: 'auto',overflow:'hidden','paddingTop':0}
             btnStyle = {position:'relative','left':0,'top':0,'width':'100%','fontFamily': 'message'};
             vcodeStyle = {'display':'block'};
         }
@@ -41052,7 +41052,7 @@ var messageForm = React.createClass({displayName: "messageForm",
                     React.createElement(TextField, {hintText: "WebSite/Blog", name: "blog", type: "url", fullWidth: true, onChange: this.saveVal, value: this.state.blog}), 
                     React.createElement(TextField, {hintText: "Verification code", name: "vcode", type: "text", required: "required", fullWidth: true}), 
                     React.createElement(TextField, {hintText: "Let's say some thing", name: "content", required: "required", multiLine: true, fullWidth: true}), 
-                    React.createElement("img", {class: "verification-image", src: this.state.vcodeSrc, style: vcodeStyle, onClick: this.changeVcode}), 
+                    React.createElement("img", {className: "verification-image", src: this.state.vcodeSrc, style: vcodeStyle, onClick: this.changeVcode}), 
                     React.createElement(FlatButton, {onClick: this.openMessage, className: "messageShowBtn", ref: "messageShowBtn", style: btnStyle, type: "submit", fullWidth: true}, 
                         React.createElement("div", {dangerouslySetInnerHTML: {__html:this.state.btnTxt}})
                     )
@@ -41140,11 +41140,11 @@ var messageList = React.createClass({displayName: "messageList",
 
             return listVal;
         })
-        this.setState({list: lists.message});
-
         // deal with page
         var page = this.page(lists.page.thisPage, lists.page.totalPage);
-        this.setState({page: page,totalPage: lists.page.totalPage,thisPage: lists.page.thisPage});
+
+        this.setState({list: lists.message, page: page, totalPage: lists.page.totalPage, thisPage: lists.page.thisPage});
+
     },
     page: function(now, total) {
         var btns = [];
@@ -41190,7 +41190,7 @@ var messageList = React.createClass({displayName: "messageList",
                     if (listValue.replay == true){
                         replay = React.createElement(Message, {ref: "replayBox", open: "true"})
                     }
-                    return React.createElement("div", {className: "comment-block"}, 
+                    return React.createElement("div", {className: "comment-block", key: listValue._id}, 
                                 React.createElement("div", {className: "comment-block-imgbg"}, 
                                     React.createElement("img", {src: listValue.avatar, onerror: "this.src='/img/avatar/nobody.jpg'", className: "comment-block-avatar"})
                                 ), 
@@ -41199,7 +41199,7 @@ var messageList = React.createClass({displayName: "messageList",
                                         name, 
                                         React.createElement("span", null, listValue.time), 
                                         React.createElement("span", {className: "comment-info-replay"}, 
-                                            React.createElement("a", {href: "#", cid: listValue._id, className: "messageRep", onClick: self.replayMsg.bind(this,listValue._id)}, " 回复")
+                                            React.createElement("a", {href: "#", cid: listValue._id, className: "messageRep", onClick: self.replayMsg.bind(self,listValue._id)}, " 回复")
                                         ), 
                                         React.createElement("div", {className: "comment-text"}, listValue.content)
                                     )
@@ -41210,25 +41210,25 @@ var messageList = React.createClass({displayName: "messageList",
                 React.createElement("section", {className: "blog-list-page"}, 
                     this.state.page.map(function(pageV){
                         if(pageV.type == 'start'){
-                            return React.createElement("span", {class: "blogpagesellip", onClick: listAction.loadList.bind(this, {page:1})}, "首页")
+                            return React.createElement("span", {key: "index", className: "blogpagesellip", onClick: listAction.loadList.bind(self, {page:1})}, "首页")
                         }
                         if(pageV.type == 'preview'){
-                            return React.createElement("span", {class: "blogpagesellip", onClick: listAction.loadList.bind(this, {page:self.state.thisPage-1})}, "上一页")
+                            return React.createElement("span", {key: "preview", className: "blogpagesellip", onClick: listAction.loadList.bind(self, {page:self.state.thisPage-1})}, "上一页")
                         }
                         if(pageV.type == 'next'){
-                            return React.createElement("span", {class: "blogpagesellip", onClick: listAction.loadList.bind(this, {page:self.state.thisPage+1})}, "下一页")
+                            return React.createElement("span", {key: "next", className: "blogpagesellip", onClick: listAction.loadList.bind(self, {page:self.state.thisPage+1})}, "下一页")
                         }
                         if(pageV.type == 'end'){
-                            return React.createElement("span", {class: "blogpagesellip", onClick: listAction.loadList.bind(this, {page:self.state.totalPage})}, "尾页")
+                            return React.createElement("span", {key: "end", className: "blogpagesellip", onClick: listAction.loadList.bind(self, {page:self.state.totalPage})}, "尾页")
                         }
                         if(pageV.type == 'ellipsis'){
-                            return React.createElement("span", {class: "blogpagesellip"}, "...")
+                            return React.createElement("span", {key: "ellipsis", className: "blogpagesellip"}, "...")
                         }
                         if(pageV.type == 'active'){
-                            return React.createElement("span", {className: "active"}, pageV.number)
+                            return React.createElement("span", {key: "active", className: "active"}, pageV.number)
                         }
                         if(pageV.type == 'page'){
-                            return React.createElement("span", {href: "?page="+pageV.number, onClick: listAction.loadList.bind(this, {page:pageV.number})}, pageV.number)
+                            return React.createElement("span", {key: pageV.number, onClick: listAction.loadList.bind(self, {page:pageV.number})}, pageV.number)
                         }
                     }), 
                     '共' + this.state.totalPage + '页'

@@ -73,11 +73,10 @@ var messageList = React.createClass({
 
             return listVal;
         })
-        this.setState({list: lists.message});
-
         // deal with page
         var page = this.page(lists.page.thisPage, lists.page.totalPage);
-        this.setState({page: page,totalPage: lists.page.totalPage,thisPage: lists.page.thisPage});
+
+        this.setState({list: lists.message, page: page, totalPage: lists.page.totalPage, thisPage: lists.page.thisPage});
     },
     page: function(now, total) {
         var btns = [];
@@ -123,7 +122,7 @@ var messageList = React.createClass({
                     if (listValue.replay == true){
                         replay = <Message ref = "replayBox" open="true" />
                     }
-                    return <div className="comment-block">
+                    return <div className="comment-block"  key={listValue._id}>
                                 <div className="comment-block-imgbg">
                                     <img src={listValue.avatar} onerror="this.src='/img/avatar/nobody.jpg'" className="comment-block-avatar" />
                                 </div>
@@ -132,7 +131,7 @@ var messageList = React.createClass({
                                         {name}
                                         <span>{listValue.time}</span>
                                         <span className="comment-info-replay">
-                                            <a href="#" cid={listValue._id} className="messageRep" onClick={self.replayMsg.bind(this,listValue._id)}>&#xe082; 回复</a>
+                                            <a href="#" cid={listValue._id} className="messageRep" onClick={self.replayMsg.bind(self,listValue._id)}>&#xe082; 回复</a>
                                         </span>
                                         <div className="comment-text">{listValue.content}</div>
                                     </div>
@@ -143,25 +142,25 @@ var messageList = React.createClass({
                 <section className="blog-list-page">
                     {this.state.page.map(function(pageV){
                         if(pageV.type == 'start'){
-                            return <span class="blogpagesellip"  onClick={listAction.loadList.bind(this, {page:1})} >首页</span>
+                            return <span key="index" className="blogpagesellip"  onClick={listAction.loadList.bind(self, {page:1})} >首页</span>
                         }
                         if(pageV.type == 'preview'){
-                            return <span class="blogpagesellip" onClick={listAction.loadList.bind(this, {page:self.state.thisPage-1})} >上一页</span>
+                            return <span key="preview" className="blogpagesellip" onClick={listAction.loadList.bind(self, {page:self.state.thisPage-1})} >上一页</span>
                         }
                         if(pageV.type == 'next'){
-                            return <span class="blogpagesellip" onClick={listAction.loadList.bind(this, {page:self.state.thisPage+1})} >下一页</span>
+                            return <span key="next" className="blogpagesellip" onClick={listAction.loadList.bind(self, {page:self.state.thisPage+1})} >下一页</span>
                         }
                         if(pageV.type == 'end'){
-                            return <span class="blogpagesellip" onClick={listAction.loadList.bind(this, {page:self.state.totalPage})} >尾页</span>
+                            return <span key="end"  className="blogpagesellip" onClick={listAction.loadList.bind(self, {page:self.state.totalPage})} >尾页</span>
                         }
                         if(pageV.type == 'ellipsis'){
-                            return <span class="blogpagesellip">...</span>
+                            return <span key="ellipsis"  className="blogpagesellip">...</span>
                         }
                         if(pageV.type == 'active'){
-                            return <span  className="active">{pageV.number}</span>
+                            return <span key="active"   className="active">{pageV.number}</span>
                         }
                         if(pageV.type == 'page'){
-                            return <span href={"?page="+pageV.number} onClick={listAction.loadList.bind(this, {page:pageV.number})} >{pageV.number}</span>
+                            return <span key={pageV.number} onClick={listAction.loadList.bind(self, {page:pageV.number})} >{pageV.number}</span>
                         }
                     })}
                     {'共' + this.state.totalPage + '页'}
