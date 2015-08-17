@@ -95,64 +95,14 @@ module.exports = function(grunt) {
         clean: {
             online: 'online',
         },
-        staticize: {
-            task: {
-                rev: {
-                    all: {
-                        files: ['online/**/static/**/*.{css,js,jpg,png,gif}']
-                    }
-                },
-                rep: {
-                    all: {
-                        files: ['online/static/**/*.{css,js,jade}', 'online/**/*.jade', '!online/msite/**/*.*', '!online/mstaticize/**/*.*'],
-                        assetsDirs: 'online/static/',
-                        patterns: /([\w\-\.]+){0,1}(\/[\w\-\.]+)*\.\w+/mg
-                    },
-                    msite: {
-                        files: ['online/msite/static/**/*.{css,js}', 'online/msite/**/*.jade'],
-                        assetsDirs: 'online/msite/static/',
-                        patterns: /([\w\-\.]+){0,1}(\/[\w\-\.]+)*\.\w+/mg
-                    },
-                    mstaticize: {
-                        files: ['online/mstaticize/static/**/*.{css,js,jade}', 'online/mstaticize/**/*.jade'],
-                        assetsDirs: 'online/mstaticize/static/',
-                        patterns: /([\w\-\.]+){0,1}(\/[\w\-\.]+)*\.\w+/mg
-                    }
-                },
-                pkg: {
-                    online: {
-                        directory: 'online/',
-                        target: 'online/online.tar.gz'
-                    }
-                }
-            }
-        },
         uglify: {
-            www: {
+            js: {
                 files: [{
                     expand: true,
-                    cwd: 'online/static/',
+                    cwd: 'static/js/',
                     src: ['**/*.js', '!**/*.min.js'],
-                    dest: 'online/static/',
-                    ext: '.js'
-                }]
-            },
-            msite: {
-                files: [{
-                    expand: true,
-                    cwd: 'online/msite/static/',
-                    src: ['**/*.js', '!**/*.min.js'],
-                    dest: 'online/msite/static/',
-                    ext: '.js'
-                }]
-            },
-            mstaticize: {
-                files: [{
-                    expand: true,
-                    cwd: 'online/mstaticize/static/',
-                    src: ['**/*.js', '!**/*.min.js'],
-                    dest: 'online/mstaticize/static/',
-                    ext: '.js'
+                    dest: 'static/js/',
+                    ext: '.min.js'
                 }]
             }
         },
@@ -182,7 +132,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browserify');
 
 
-    grunt.registerTask('default', ['compass', 'imagemin', 'cssmin', 'browserify', 'watch']);
+    grunt.registerTask('default', ['compass', 'imagemin', 'cssmin', 'browserify', 'uglify', 'watch']);
     grunt.registerTask('online', ['clean', 'copy', 'uglify', 'staticize']); //,
     grunt.registerTask('test', ['browserify']); //,
 };

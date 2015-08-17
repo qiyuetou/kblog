@@ -41144,7 +41144,6 @@ var messageList = React.createClass({displayName: "messageList",
         var page = this.page(lists.page.thisPage, lists.page.totalPage);
 
         this.setState({list: lists.message, page: page, totalPage: lists.page.totalPage, thisPage: lists.page.thisPage});
-
     },
     page: function(now, total) {
         var btns = [];
