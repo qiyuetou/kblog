@@ -2,6 +2,8 @@ var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
 //
+var Message = require('../component/messageForm.jsx');
+
 var Reflux = require('reflux');
 var listAction = require('./messageAction.jsx');
 var listStore = require('./messageStore.jsx');
@@ -90,16 +92,36 @@ var messageList = React.createClass({
         btns = btns.concat(now !== total ? [{type: 'next'}, {type: 'end'}] : []);
         return btns;
     },
+    replayMsg: function(id){
+        var self = this;
+        // console.log(id,this.state.list);
+        var list = self.state.list.map(function(val){
+            if(val._id == id){
+                val.replay = true;
+            }else{
+                val.replay = false;
+            }
+        });
+        self.setState(list);
+        // var box = this.refs.replayBox.getDOMNode();
+        // window.box = box;
+        // console.log(box);
+        return false;
+    },
     render: function(){
         var self = this;
         return (
             <div>
                 {this.state.list.map(function(listValue){
                     var name ;
+                    var replay;
                     if (listValue.name && listValue.blog){
                         name =  <a href={listValue.blog} className="comment-info-name">{listValue.name}</a>
                     } else {
                         name = <span className="comment-info-name">{ listValue.name ? listValue.name : 'Mofei的好伙伴'}</span>
+                    }
+                    if (listValue.replay == true){
+                        replay = <Message ref = "replayBox" open="true" />
                     }
                     return <div className="comment-block">
                                 <div className="comment-block-imgbg">
@@ -110,11 +132,12 @@ var messageList = React.createClass({
                                         {name}
                                         <span>{listValue.time}</span>
                                         <span className="comment-info-replay">
-                                            <a href="#" cid={listValue._id} className="messageRep">&#xe082; 回复</a>
+                                            <a href="#" cid={listValue._id} className="messageRep" onClick={self.replayMsg.bind(this,listValue._id)}>&#xe082; 回复</a>
                                         </span>
                                         <div className="comment-text">{listValue.content}</div>
                                     </div>
                                 </div>
+                                {replay}
                             </div>
                 })}
                 <section className="blog-list-page">

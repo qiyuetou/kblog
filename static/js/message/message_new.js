@@ -40939,9 +40939,19 @@ var FontIcon = mui.FontIcon;
 
 var messageForm = React.createClass({displayName: "messageForm",
     canPost: false,
+    componentWillMount: function(){
+        var self = this;
+        if (self.props.open == 'true') {
+            self.canPost = true;
+        }
+    },
     getInitialState:function(){
+        var self = this;
+        if (self.props.open == 'true') {
+            self.canPost = true;
+        }
         return {
-            btnTxt: '&#xe0c5; 留言 Leave a message',
+            btnTxt: self.canPost ? '发布留言 Post a message' : '&#xe0c5; 留言 Leave a message',
             vcodeSrc: '/verification/img',
             vcodeShow: false,
             name: $.cookie('article-name') || '',
@@ -40996,7 +41006,7 @@ var messageForm = React.createClass({displayName: "messageForm",
                     alert('发布成功')
                     listAction.addOne(data);
                 }else{
-                    alert('发布失败'+data.message)
+                    alert('发布失败'+data.message);
                 }
                 console.log('form callback',data)
             }
@@ -41023,20 +41033,27 @@ var messageForm = React.createClass({displayName: "messageForm",
         });
     },
     render: function(){
+        var boxStyle = {height: 0,overflow:'hidden','padding-top':36};
+        var btnStyle = {position:'absolute','left':0,'top':0,'width':'100%','fontFamily': 'message'};
         var vcodeStyle = {'display':'none'};
-        if(this.state.vcodeShow){
+        if (this.state.vcodeShow) {
             vcodeStyle.display = 'block';
+        }
+        if (this.props.open == 'true') {
+            boxStyle = {height: 'auto',overflow:'hidden','padding-top':0}
+            btnStyle = {position:'relative','left':0,'top':0,'width':'100%','fontFamily': 'message'};
+            vcodeStyle = {'display':'block'};
         }
         return (
             React.createElement("form", {className: "comment-box", action: "/api/message", method: "post", onSubmit: this.postMessage, ref: "messageFrom"}, 
-                React.createElement("div", {style: {height: 0,overflow:'hidden','padding-top':36}, ref: "messageBox", className: "messageBox", onFocus: this.focus}, 
+                React.createElement("div", {style: boxStyle, ref: "messageBox", className: "messageBox", onFocus: this.focus}, 
                     React.createElement(TextField, {hintText: "Nickname", name: "name", type: "text", fullWidth: true, onChange: this.saveVal, value: this.state.name}), 
                     React.createElement(TextField, {hintText: "Email", name: "email", type: "email", fullWidth: true, onChange: this.saveVal, value: this.state.email}), 
                     React.createElement(TextField, {hintText: "WebSite/Blog", name: "blog", type: "url", fullWidth: true, onChange: this.saveVal, value: this.state.blog}), 
                     React.createElement(TextField, {hintText: "Verification code", name: "vcode", type: "text", required: "required", fullWidth: true}), 
                     React.createElement(TextField, {hintText: "Let's say some thing", name: "content", required: "required", multiLine: true, fullWidth: true}), 
                     React.createElement("img", {class: "verification-image", src: this.state.vcodeSrc, style: vcodeStyle, onClick: this.changeVcode}), 
-                    React.createElement(FlatButton, {onClick: this.openMessage, className: "messageShowBtn", ref: "messageShowBtn", style: {position:'absolute','left':0,'top':0,'width':'100%','fontFamily': 'message'}, type: "submit", fullWidth: true}, 
+                    React.createElement(FlatButton, {onClick: this.openMessage, className: "messageShowBtn", ref: "messageShowBtn", style: btnStyle, type: "submit", fullWidth: true}, 
                         React.createElement("div", {dangerouslySetInnerHTML: {__html:this.state.btnTxt}})
                     )
                 )
@@ -41052,6 +41069,8 @@ var injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
 
 //
+var Message = require('../component/messageForm.jsx');
+
 var Reflux = require('reflux');
 var listAction = require('./messageAction.jsx');
 var listStore = require('./messageStore.jsx');
@@ -41140,16 +41159,36 @@ var messageList = React.createClass({displayName: "messageList",
         btns = btns.concat(now !== total ? [{type: 'next'}, {type: 'end'}] : []);
         return btns;
     },
+    replayMsg: function(id){
+        var self = this;
+        // console.log(id,this.state.list);
+        var list = self.state.list.map(function(val){
+            if(val._id == id){
+                val.replay = true;
+            }else{
+                val.replay = false;
+            }
+        });
+        self.setState(list);
+        // var box = this.refs.replayBox.getDOMNode();
+        // window.box = box;
+        // console.log(box);
+        return false;
+    },
     render: function(){
         var self = this;
         return (
             React.createElement("div", null, 
                 this.state.list.map(function(listValue){
                     var name ;
+                    var replay;
                     if (listValue.name && listValue.blog){
                         name =  React.createElement("a", {href: listValue.blog, className: "comment-info-name"}, listValue.name)
                     } else {
                         name = React.createElement("span", {className: "comment-info-name"},  listValue.name ? listValue.name : 'Mofei的好伙伴')
+                    }
+                    if (listValue.replay == true){
+                        replay = React.createElement(Message, {ref: "replayBox", open: "true"})
                     }
                     return React.createElement("div", {className: "comment-block"}, 
                                 React.createElement("div", {className: "comment-block-imgbg"}, 
@@ -41160,11 +41199,12 @@ var messageList = React.createClass({displayName: "messageList",
                                         name, 
                                         React.createElement("span", null, listValue.time), 
                                         React.createElement("span", {className: "comment-info-replay"}, 
-                                            React.createElement("a", {href: "#", cid: listValue._id, className: "messageRep"}, " 回复")
+                                            React.createElement("a", {href: "#", cid: listValue._id, className: "messageRep", onClick: self.replayMsg.bind(this,listValue._id)}, " 回复")
                                         ), 
                                         React.createElement("div", {className: "comment-text"}, listValue.content)
                                     )
-                                )
+                                ), 
+                                replay
                             )
                 }), 
                 React.createElement("section", {className: "blog-list-page"}, 
@@ -41200,7 +41240,7 @@ var messageList = React.createClass({displayName: "messageList",
 
 module.exports = messageList;
 
-},{"./messageAction.jsx":333,"./messageStore.jsx":336,"material-ui":35,"react":313,"react-tap-event-plugin":140,"reflux":330}],336:[function(require,module,exports){
+},{"../component/messageForm.jsx":334,"./messageAction.jsx":333,"./messageStore.jsx":336,"material-ui":35,"react":313,"react-tap-event-plugin":140,"reflux":330}],336:[function(require,module,exports){
 var Reflux = require('reflux');
 
 var listAction = require('./messageAction.jsx');

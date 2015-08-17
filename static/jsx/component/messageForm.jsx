@@ -16,9 +16,19 @@ var FontIcon = mui.FontIcon;
 
 var messageForm = React.createClass({
     canPost: false,
+    componentWillMount: function(){
+        var self = this;
+        if (self.props.open == 'true') {
+            self.canPost = true;
+        }
+    },
     getInitialState:function(){
+        var self = this;
+        if (self.props.open == 'true') {
+            self.canPost = true;
+        }
         return {
-            btnTxt: '&#xe0c5; 留言 Leave a message',
+            btnTxt: self.canPost ? '发布留言 Post a message' : '&#xe0c5; 留言 Leave a message',
             vcodeSrc: '/verification/img',
             vcodeShow: false,
             name: $.cookie('article-name') || '',
@@ -100,20 +110,27 @@ var messageForm = React.createClass({
         });
     },
     render: function(){
+        var boxStyle = {height: 0,overflow:'hidden','padding-top':36};
+        var btnStyle = {position:'absolute','left':0,'top':0,'width':'100%','fontFamily': 'message'};
         var vcodeStyle = {'display':'none'};
-        if(this.state.vcodeShow){
+        if (this.state.vcodeShow) {
             vcodeStyle.display = 'block';
+        }
+        if (this.props.open == 'true') {
+            boxStyle = {height: 'auto',overflow:'hidden','padding-top':0}
+            btnStyle = {position:'relative','left':0,'top':0,'width':'100%','fontFamily': 'message'};
+            vcodeStyle = {'display':'block'};
         }
         return (
             <form className="comment-box" action="/api/message" method="post" onSubmit={this.postMessage} ref="messageFrom">
-                <div style={{height: 0,overflow:'hidden','padding-top':36}} ref="messageBox" className="messageBox" onFocus={this.focus} >
+                <div style={boxStyle} ref="messageBox" className="messageBox" onFocus={this.focus} >
                     <TextField hintText="Nickname" name="name" type="text" fullWidth={true} onChange={this.saveVal} value={this.state.name} />
                     <TextField hintText="Email" name="email" type="email" fullWidth={true}  onChange={this.saveVal} value={this.state.email} />
                     <TextField hintText="WebSite/Blog" name="blog" type="url" fullWidth={true}  onChange={this.saveVal} value={this.state.blog} />
                     <TextField hintText="Verification code" name="vcode" type="text" required="required" fullWidth={true} />
                     <TextField hintText="Let's say some thing" name="content" required="required" multiLine={true} fullWidth={true} />
                     <img class="verification-image" src={this.state.vcodeSrc} style={vcodeStyle} onClick={this.changeVcode} />
-                    <FlatButton onClick={this.openMessage} className="messageShowBtn" ref="messageShowBtn" style={{position:'absolute','left':0,'top':0,'width':'100%','fontFamily': 'message'}} type="submit" fullWidth={true} >
+                    <FlatButton onClick={this.openMessage} className="messageShowBtn" ref="messageShowBtn" style={btnStyle} type="submit" fullWidth={true} >
                         <div dangerouslySetInnerHTML={{__html:this.state.btnTxt}}></div>
                     </FlatButton>
                 </div>
