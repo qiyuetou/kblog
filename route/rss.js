@@ -1,4 +1,5 @@
 var render = require('../views/readen.js');
+var marked = require('marked');
 
 function* rss(Tclass, Tpage) {
     var self = this;
@@ -11,6 +12,9 @@ function* rss(Tclass, Tpage) {
                 db.collection('blog').find({}).sort({
                     '_id': -1
                 }).limit(20).toArray(function(err, res) {
+                    for(var i in res){
+                        res[i].content = marked(res[i].content);
+                    }
                     callback(null, res);
                 });
             });

@@ -2,25 +2,28 @@ doctype xml
 rss(version="2.0",xmlns:atom="http://www.w3.org/2005/Atom")
 	channel
 		atom:link(href="http://www.zhuwenlong.com/rss" rel="self" type="application/rss+xml")/
-		description <![CDATA[朱文龙,Z.Mofei,易班网端工程师、ADOBE中国认证网络设计师，2010年开始研究web前端技术，熟练掌握html5，css3，javascript，node.js 等互联网技能，并不断学习成长的追梦者。]]>
-		title <![CDATA[HI!I am Z.Mofei! 朱文龙的自留地]]>
+		description <![CDATA[朱文龙,Mofei Zhu,易班网端工程师、ADOBE中国认证网络设计师，2010年开始研究web前端技术，熟练掌握html5，css3，javascript，node.js 等互联网技能，并不断学习成长的追梦者。]]>
+		title <![CDATA[HI!I am Mofei Zhu! 朱文龙的自留地]]>
 		link http://www.zhuwenlong.com
 		language zh-CN
 		pubDate= listS[0].pubtime.toGMTString()
 		lastBuildDate= listS[0].pubtime.toGMTString()
 		docs http://blogs.law.harvard.edu/tech/rss
-		managingEditor <![CDATA[hello@zhuwenlong.com(朱文龙,Z.Mofei)]]>
-		webMaster <![CDATA[hello@zhuwenlong.com(朱文龙,Z.Mofei)]]>
+		managingEditor <![CDATA[hello@zhuwenlong.com (Mofei Zhu)]]>
+		webMaster <![CDATA[hello@zhuwenlong.com (Mofei Zhu)]]>
+		ttl= 60*6
 		image
 			title <![CDATA[HI!I am Z.Mofei! 朱文龙的自留地]]>
 			url http://www.zhuwenlong.com/apple-touch-icon-precomposed_144.png
 			link http://www.zhuwenlong.com
 		-for list in listS
 			item
-				title= list.title
+				title
+					:cdata
+						#{list.title}
 				link= 'http://www.zhuwenlong.com/blog/'+list._id
 				description= list.content
-				author <![CDATA[hello@zhuwenlong.com(朱文龙,Z.Mofei)]]>
+				author <![CDATA[hello@zhuwenlong.com (Mofei Zhu)]]>
 				comments= 'http://www.zhuwenlong.com/blog/'+list._id
 				pubDate= list.pubtime.toGMTString()
 				guid(isPermaLink="true")= 'http://www.zhuwenlong.com/blog/'+list._id
